@@ -1,0 +1,38 @@
+﻿@using FluentBootstrap
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <title>FluentBootstrap - @Page.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <!-- <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" /> -->
+        <link href="~/Content/styles.css" rel="stylesheet" />
+        <link href="~/Content/prism.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>  
+        <script src="~/Scripts/prism.js"></script>              
+        @RenderSection("head", required: false)
+    </head>
+    <body>        
+        @using (var navbar = Html.Bootstrap(this).Navbar("FluentBootstrap", "/").SetPosition(NavbarPosition.StaticTop).Begin())
+        {
+            @navbar.NavbarLink("Introduction", "/")
+            @navbar.NavbarLink("Installation", "/Installation")
+            @navbar.NavbarLink("Usage", "/Usage")
+            @navbar.NavbarLink("Development", "/Development")
+            @navbar.NavbarLink("GitHub", "https://github.com/somedave/FluentBootstrap")
+        }
+        @using(Html.Bootstrap(this).Container().Begin())
+        {
+            @RenderBody()
+            @Html.Bootstrap(this).PageHeader("Help!")
+            <p>The best way to get help is to post a question on <a href="http://www.stackoverflow.com">StackOverflow</a> with the <strong>FluentBootstrap</strong> tag. You can also tweet or follow <a href="https://twitter.com/somedaveg">@@somedaveg</a> with questions or for announcements.</p>
+            <hr />
+            <p>FluentBootstrap is crafted by <a href="http://www.somedave.com">Dave Glick</a>. Code on <a href="https://github.com/somedave/FluentBootstrap">GitHub</a>.</p>
+        }
+        <p></p>
+    </body>
+</html>
