@@ -14,7 +14,7 @@
 <p>FluentBootstrap is designed to work in any environment. It consists of a code library, and in most cases, an architecture-specific library. The following instructions detail how to set up FluentBootstrap for various platforms.</p>
 
 @Html.Bootstrap(this).Heading3("ASP.NET MVC")
-<p>The easiest way to get FluentBootstrap working on ASP.NET MVC is to get the FluentBootstrap.Mvc NuGet package. This will pull down both the core library and the special support for ASP.NET MVC including the Bootstrap model binding helpers.</p>
+<p>The easiest way to get FluentBootstrap working on ASP.NET MVC is to get the <a href="https://www.nuget.org/packages/FluentBootstrap.Mvc/">FluentBootstrap.Mvc NuGet package</a>. This will pull down both the core library and the special support for ASP.NET MVC including the Bootstrap model binding helpers.</p>
 <p>All of the extensions for FluentBootstrap are under the root <code>FluentBootstrap</code> namespace. In order to access this namespace from your view code, you'll probably want to add it to your <code>web.config</code> like this:</p>
 <pre><code class="language-markup">@Html.Raw(HttpUtility.HtmlEncode(@"<system.web.webPages.razor>
     <host .../>
@@ -32,7 +32,7 @@
 }")</code></pre>
 
 @Html.Bootstrap(this).Heading3("ASP.NET WebPages")
-<p>If you prefer to use ASP.NET WebPages, you can get the FluentBootstrap.WebPages NuGet package. This will pull down both the core library and the special support for ASP.NET WebPages. You will need to include <code>@@using FluentBootstrap</code> at the top of every page. You will also need to pass in the page instance when using the helper like <code>@@Html.Bootstrap(this).Heading1("My Header")</code>. This is because the ASP.NET WebPages <code>HtmlHelper</code> class does not provide all the information needed to use FluentBootstrap (such as access to the request context).</p>
+<p>If you prefer to use ASP.NET WebPages, you can get the <a href="https://www.nuget.org/packages/FluentBootstrap.WebPages/">FluentBootstrap.WebPages NuGet package</a>. This will pull down both the core library and the special support for ASP.NET WebPages. You will need to include <code>@@using FluentBootstrap</code> at the top of every page. You will also need to pass in the page instance when using the helper like <code>@@Html.Bootstrap(this).Heading1("My Header")</code>. This is because the ASP.NET WebPages <code>HtmlHelper</code> class does not provide all the information needed to use FluentBootstrap (such as access to the request context).</p>
 
 @Html.Bootstrap(this).Heading3("Use It Directly")
-<p>If you are outside of ASP.NET or you just want to generate Bootstrap HTML strings, then you can get by with just the FluentBootstrap NuGet package. This provides a <code>SimpleBootstrapHelper</code> class that you could instantiate to get access to all of the FluentBootstrap extensions.</p>
+<p>If you are outside of ASP.NET or you just want to generate Bootstrap HTML strings, then you can get by with just the <a href="https://www.nuget.org/packages/FluentBootstrap/">FluentBootstrap NuGet package</a>. This provides a <code>SimpleBootstrapHelper</code> class that you could instantiate to get access to all of the FluentBootstrap extensions.</p>
