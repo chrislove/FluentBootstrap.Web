@@ -22,4 +22,3 @@ ipch
 *.pdb
 /*.~vsd
 *UpgradeWizard*
-packages*/
