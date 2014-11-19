@@ -5,14 +5,11 @@
     Layout = "_Layout.cshtml";
 }
 
-@Html.Bootstrap(this).PageHeader("Installation")
-
-@Html.Bootstrap(this).Heading1("Get Bootstrap")
+@Html.Bootstrap(this).PageHeader("Get Bootstrap")
 <p>In order to provide the most flexibility, FluentBootstrap does not code with a dependency on Bootstrap. This allows you to select the most appropriate mechanism of including Bootstrap for your situation. For example, you can use the default <a href="http://www.nuget.org/packages/bootstrap/">Bootstrap NuGet package</a>, or use the LESS source. You can even go to the <a href="http://getbootstrap.com">Bootstrap web site</a> and download the CSS for manual inclusion. However you get Bootstrap, the corresponding CSS and JavaScript must be included on your page(s).</p>
-<p>Note that you will want to match the version of Bootstrap to the version of FluentBootstrap (or vice versa). Since FluentBootstrap may be a version behind the official Bootstrap release, you may need to get a previous version of Bootstrap. To do this on NuGet with the standard Bootstrap package, you would type the following into the Package Management Console:</p>
-<pre>Install-Package Bootstrap -Version X.X.X</pre>
+<p>Note that you will want to match the version of Bootstrap to the version of FluentBootstrap (or vice versa). Since FluentBootstrap may be a version behind the official Bootstrap release, you may need to get a previous version of Bootstrap. To do this on NuGet with the standard Bootstrap package, you would type the following into the Package Management Console: <code>Install-Package Bootstrap -Version X.X.X</code>.</p>
 
-@Html.Bootstrap(this).Heading1("Install FluentBootstrap")
+@Html.Bootstrap(this).PageHeader("Install FluentBootstrap")
 <p>FluentBootstrap is designed to work in any environment. It consists of a code library, and in most cases, an architecture-specific library. The following instructions detail how to set up FluentBootstrap for various platforms.</p>
 
 @Html.Bootstrap(this).Heading3("ASP.NET MVC")

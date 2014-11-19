@@ -1,0 +1,48 @@
+﻿.jumbotron {
+  background-image: -webkit-linear-gradient(top, #214F77 0%, #193B59 100%);
+  background-image:      -o-linear-gradient(top, #214F77 0%, #193B59 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#214F77), to(#193B59));
+  background-image:         linear-gradient(to bottom, #214F77 0%, #193B59 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc12e2a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  color: #CCC;
+}
+
+.jumbotron h1 {
+    color: white;
+}
+
+/* Prism and code styles */
+pre {
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    word-wrap: normal;
+    word-break: normal;
+}
+
+pre code {
+    white-space: pre;
+}
+
+code,
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background-color: rgb(238, 238, 238);
+    color: black;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    text-shadow: none;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	background: rgb(238, 238, 238);
+}

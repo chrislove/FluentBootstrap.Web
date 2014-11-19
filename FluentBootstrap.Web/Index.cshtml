@@ -2,17 +2,13 @@
 
 @{
     Page.Title = "Introduction";
+    Page.Heading = "FluentBootstrap";
+    Page.Lead = "FluentBootstrap provides extensions, helper classes, model binding, and other goodies to help you use the Bootstrap CSS framework from .NET code.";
     Layout = "_Layout.cshtml";
 }
 
-@using (var jumbo = Html.Bootstrap(this).Jumbotron().Begin())
-{
-    @Html.Bootstrap(this).Heading1("FluentBootstrap")
-    <p>FluentBootstrap provides extensions, helper classes, and other goodies to help you use the <a href="http://getbootstrap.com">Bootstrap CSS framework</a> from code.</p>
-}
-
-@Html.Bootstrap(this).Heading1("What Is FluentBootstrap?")
-<p>The <a href="http://getbootstrap.com">Bootstrap CSS framework</a> is great. It provides a whole lot of useful components that can be leveraged on any web page. However, as with any complex CSS framework it requires you to specify particular CSS classes on specific HTML elements. FluentBootstrap abstracts most of this detail behind code so that you can think about what you want to present rather than how to present it.</p>
+@Html.Bootstrap(this).PageHeader("What Is FluentBootstrap?")
+<p>The @Html.Bootstrap(this).Link("Bootstrap CSS framework", "http://getbootstrap.com") is great. It provides a whole lot of useful components that can be leveraged on any web page. However, as with any complex CSS framework it requires you to specify particular CSS classes on specific HTML elements. FluentBootstrap abstracts most of this detail behind code so that you can think about what you want to present rather than how to present it.</p>
 
 @using (var grid = Html.Bootstrap(this).GridRow().Begin())
 {
@@ -59,7 +55,7 @@
 
 
 
-@Html.Bootstrap(this).Heading1("I'm Not Convinced. Why Is This Better Than Raw HTML?")
+@Html.Bootstrap(this).PageHeader("I'm Not Convinced. Why Is This Better Than Raw HTML?")
 <p>"Better" is such a subjective term. FluentBootstrap may not be for you if you prefer writing raw HTML or need the control the markup gives you. However, FluentBootstrap does offer the following advantages that may make generating Bootstrap HTML code easier in many situations:</p>
 
 @using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
@@ -70,16 +66,17 @@
     @list.ListItem("FluentBootstrap makes upgrading the Bootstrap library easier because missing structures, changes, etc. will be presented as compile-time errors (if pre-compilation is enaled).")
     @list.ListItem("Proper start and end tag conventions are enforced through run-time checks and the disposable object model.")
     @list.ListItem("All FluentBootstrap components have a flexible fluent interface that can be used to adjust HTML attributes, classes, etc. prior to output.")
+    @list.ListItem("Using code makes automatic refactoring and other static analysis possible on your Bootstrap code.")
     @list.ListItem("Content can be output to alternate destinations, such as a string (this is helpful when rendering templates for JavaScript consumption).")
     @list.ListItem("Component properties, such as whether a form should be horizontal or vertical, are transparently maintained for all child components, including those in partial views.")
     @list.ListItem("Additional extensions can be written to create custom composite components that are easy to use within your views.")
 }
 
-@Html.Bootstrap(this).Heading1("Versions")
+@Html.Bootstrap(this).PageHeader("Versioning")
 <p>The Bootstrap library follows <a href="http://semver.org">SemVer</a> which generally uses three version numbers to represent major, minor, and patch versions. Since a given version of FluentBootstrap works in tandem with a specific version of Bootstrap, FluentBootstrap uses four version numbers. The first three numbers track the version of Bootstrap that the library was developed against (that's not to say it won't work with other similar versions of Bootstrap, but there may be problems). The fourth version number is a build number that gets incremented on every build of FluentBootstrap.</p>
 <p>Right now, the most recent FluentBootstrap version tracks Bootstrap 3.2.0. This is because Bootstrap 3.3.0 come out right when development for this first version of FluentBootstrap was finishing. It was decided to stick to the current version of Bootstrap and finish up the project, then focus on any updates needed for Bootstrap 3.3.0 compatibility. A FluentBootstrap 3.3.0.X will be released in the coming weeks.</p>
 
-@Html.Bootstrap(this).Heading1("Roadmap")
+@Html.Bootstrap(this).PageHeader("Roadmap")
 <p>FluentBootstrap is far from complete. Right now, the entire set of standard Bootstrap components are implemented, but none of the JavaScript ones are (such as modals). There are also a number of other near-term goals:</p>
 
 @using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())

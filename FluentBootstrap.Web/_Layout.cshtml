@@ -8,30 +8,49 @@
         <title>FluentBootstrap - @Page.Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        <!-- <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" /> -->
+        <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
         <link href="~/Content/styles.css" rel="stylesheet" />
         <link href="~/Content/prism.css" rel="stylesheet" />
+        <link href="~/Content/master.css" rel="stylesheet" />
         <script src="~/Scripts/jquery-1.9.0.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>  
         <script src="~/Scripts/prism.js"></script>              
         @RenderSection("head", required: false)
     </head>
     <body>        
-        @using (var navbar = Html.Bootstrap(this).Navbar("FluentBootstrap", "/").SetPosition(NavbarPosition.StaticTop).Begin())
+        @using (var navbar = Html.Bootstrap(this).Navbar("FluentBootstrap", "/").SetPosition(NavbarPosition.StaticTop).SetFluid(false).AddStyle("margin-bottom", "0px").Begin())
         {
-            @navbar.NavbarLink("Introduction", "/")
-            @navbar.NavbarLink("Installation", "/Installation")
-            @navbar.NavbarLink("Usage", "/Usage")
-            @navbar.NavbarLink("Development", "/Development")
+            @navbar.NavbarLink("Installation", "/Installation").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Installation"))
+            @navbar.NavbarLink("Usage", "/Usage").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Usage"))
+            //@navbar.NavbarLink("CSS", "/CSS").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/CSS"))
+            //@navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
+            //@navbar.NavbarLink("JavaScript", "/JavaScript").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/JavaScript"))
+            //@navbar.NavbarLink("MVC", "/MVC").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/MVC"))
+            @navbar.NavbarLink("Development", "/Development").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Development"))
             @navbar.NavbarLink("GitHub", "https://github.com/somedave/FluentBootstrap")
+        }
+        @using (var jumbo = Html.Bootstrap(this).Jumbotron().Begin())
+        {
+            using(Html.Bootstrap(this).Container().Begin())
+            {
+                string heading = Page.Heading ?? Page.Title;
+                @Html.Bootstrap(this).Heading1(heading)
+                if(Page.Lead != null)
+                {
+                    <p>@Html.Raw(Page.Lead)</p>
+                }
+            }
         }
         @using(Html.Bootstrap(this).Container().Begin())
         {
             @RenderBody()
             @Html.Bootstrap(this).PageHeader("Help!")
-            <p>The best way to get help is to post a question on <a href="http://www.stackoverflow.com">StackOverflow</a> with the <strong>FluentBootstrap</strong> tag. You can also tweet or follow <a href="https://twitter.com/somedaveg">@@somedaveg</a> with questions or for announcements.</p>
-            <hr />
-            <p>FluentBootstrap is crafted by <a href="http://www.somedave.com">Dave Glick</a>. Code on <a href="https://github.com/somedave/FluentBootstrap">GitHub</a>.</p>
+            <p>The best way to get help is to post a question on @Html.Bootstrap(this).Link("StackOverflow", "http://www.stackoverflow.com") with the <strong>FluentBootstrap</strong> tag. If you find a bug, @Html.Bootstrap(this).Link("open an issue on GitHub", "https://github.com/somedave/FluentBootstrap/issues"). You can also tweet or follow @Html.Bootstrap(this).Link("@somedaveg", "https://twitter.com/somedaveg") with questions or for announcements.</p>
+        }
+        <hr />
+        @using(Html.Bootstrap(this).Container().Begin())
+        {
+            <p>FluentBootstrap is crafted by @Html.Bootstrap(this).Link("Dave Glick", "http://www.somedave.com"). Code on @Html.Bootstrap(this).Link("GitHub", "https://github.com/somedave/FluentBootstrap").</p>
         }
         <p></p>
         <script>
