@@ -22,3 +22,5 @@ ipch
 *.pdb
 /*.~vsd
 *UpgradeWizard*
+FluentBootstrap.Web/website.publishproj
+FluentBootstrap.Web/App_Data/PublishProfiles/*
