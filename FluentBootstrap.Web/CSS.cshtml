@@ -4,3 +4,82 @@
     Page.Title = "CSS";
     Layout = "_Layout.cshtml";
 }
+
+<style>
+    .demo-grid {
+        margin-bottom: 6px;
+    }
+
+        .demo-grid > div {
+            border: 1px solid #ccc;
+            background-color: #eee;
+        }
+</style>
+
+<p>FluentBootstrap implements all CSS functionality from Bootstrap. The following are some select examples of how to use it. They roughly follow the examples in the Bootstrap documentation, but often include some implementation differences to highlight the additional functionality of FluentBotostrap. For a full list of Bootstrap capabilities and the canonical reference, @Html.Bootstrap(this).Link("see the Bootstrap CSS documentation", "http://getbootstrap.com/css/").</p>
+
+@Html.Bootstrap(this).PageHeader("Grid system")
+
+@Html.Bootstrap(this).Heading3("Example: Stacked-to-horizontal")
+
+@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+{
+    for (int c = 0; c < 12; c++)
+    {
+        @row.GridColumn(1).AddContent("Md 1")
+    }
+}
+@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+{
+    using (row.GridColumn(8).Begin())
+    {
+        <text>Md 8</text>
+    }
+    using (row.GridColumn(4).Begin())
+    {
+        <text>Md 4</text>
+    }
+}
+@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+{
+    @row.GridColumn(4).AddContent("Md 4")
+    @row.GridColumn(4).AddContent("Md 4")
+    @row.GridColumn(4).AddContent("Md 4")
+}
+@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+{
+    <div class="@Css.ColMd6">Md 6</div>
+    <div class="@Css.ColMd6">Md 6</div>
+}
+
+<p>In addition to demonstrating the stacked-to-horizontal concept, this code also shows several different ways to create grid columns including in a loop, within disposable blocks, using the fluent interface, and using HTML with the FluentBootstrap provided static <code>Css</code> class (which contains all of the CSS classes in Bootstrap).</p>
+
+<pre><code class="language-csharp">@Html.Raw(HttpUtility.HtmlEncode(@"@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    for (int c = 0; c < 12; c++)
+    {
+        @row.GridColumn(1).AddContent(""Md 1"")
+    }
+}
+@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    using (row.GridColumn(8).Begin())
+    {
+        <text>Md 8</text>
+    }
+    using (row.GridColumn(4).Begin())
+    {
+        <text>Md 4</text>
+    }
+}
+@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    @row.GridColumn(4).AddContent(""Md 4"")
+    @row.GridColumn(4).AddContent(""Md 4"")
+    @row.GridColumn(4).AddContent(""Md 4"")
+}
+@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    <div class=""@Css.ColMd6"">Md 6</div>
+    <div class=""@Css.ColMd6"">Md 6</div>
+}"))</code></pre>

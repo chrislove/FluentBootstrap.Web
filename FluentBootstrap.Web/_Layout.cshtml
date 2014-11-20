@@ -12,7 +12,7 @@
         <link href="~/Content/styles.css" rel="stylesheet" />
         <link href="~/Content/prism.css" rel="stylesheet" />
         <link href="~/Content/master.css" rel="stylesheet" />
-        <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+        <script src="~/Scripts/jquery-2.1.1.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>  
         <script src="~/Scripts/prism.js"></script>              
         @RenderSection("head", required: false)
@@ -22,7 +22,7 @@
         {
             @navbar.NavbarLink("Installation", "/Installation").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Installation"))
             @navbar.NavbarLink("Usage", "/Usage").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Usage"))
-            //@navbar.NavbarLink("CSS", "/CSS").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/CSS"))
+            @navbar.NavbarLink("CSS", "/CSS").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/CSS"))
             //@navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
             //@navbar.NavbarLink("JavaScript", "/JavaScript").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/JavaScript"))
             //@navbar.NavbarLink("MVC", "/MVC").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/MVC"))
