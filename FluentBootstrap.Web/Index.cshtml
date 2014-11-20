@@ -63,7 +63,7 @@
     @list.ListItem("By leveraging extension methods, helper classes, enums, etc., FluentBootstrap helps provide complete Intellisense when writing Bootstrap code.")
     @list.ListItem("Integrated helpers to bind Bootstrap structures to code objects.")
     @list.ListItem("The structures in FluentBootstrap are intended to be logic representations of the content as opposed to the (sometimes) complex HTML nesting imposed by CSS limitations in Bootstrap.")
-    @list.ListItem("FluentBootstrap makes upgrading the Bootstrap library easier because missing structures, changes, etc. will be presented as compile-time errors (if pre-compilation is enaled).")
+    @list.ListItem("FluentBootstrap makes upgrading the Bootstrap library easier because missing structures, changes, etc. will be presented as compile-time errors (if precompilation is enabled). You also won't have to worry about subtle changes in the CSS (for example, Bootstrap 3.3.0 made some small changes to the CSS classes you should use for media objects, which was handled transparently by the corresponding FluentBootstrap update).")
     @list.ListItem("Proper start and end tag conventions are enforced through run-time checks and the disposable object model.")
     @list.ListItem("All FluentBootstrap components have a flexible fluent interface that can be used to adjust HTML attributes, classes, etc. prior to output.")
     @list.ListItem("Using code makes automatic refactoring and other static analysis possible on your Bootstrap code.")
@@ -73,15 +73,13 @@
 }
 
 @Html.Bootstrap(this).PageHeader("Versioning")
-<p>The Bootstrap library follows <a href="http://semver.org">SemVer</a> which generally uses three version numbers to represent major, minor, and patch versions. Since a given version of FluentBootstrap works in tandem with a specific version of Bootstrap, FluentBootstrap uses four version numbers. The first three numbers track the version of Bootstrap that the library was developed against (that's not to say it won't work with other similar versions of Bootstrap, but there may be problems). The fourth version number is a build number that gets incremented on every build of FluentBootstrap.</p>
-<p>Right now, the most recent FluentBootstrap version tracks Bootstrap 3.2.0. This is because Bootstrap 3.3.0 come out right when development for this first version of FluentBootstrap was finishing. It was decided to stick to the current version of Bootstrap and finish up the project, then focus on any updates needed for Bootstrap 3.3.0 compatibility. A FluentBootstrap 3.3.0.X will be released in the coming weeks.</p>
+<p>The Bootstrap library follows <a href="http://semver.org">SemVer</a> which generally uses three version numbers to represent major, minor, and patch versions. Since a given version of FluentBootstrap works in tandem with a specific version of Bootstrap, FluentBootstrap uses four version numbers. The first three numbers track the version of Bootstrap that the library was developed against (that's not to say it won't work with other similar versions of Bootstrap, but there may be problems). The fourth version number is a build number that gets incremented on every build of FluentBootstrap (and is reset for each new Bootstrap version).</p>
 
 @Html.Bootstrap(this).PageHeader("Roadmap")
-<p>FluentBootstrap is far from complete. Right now, the entire set of standard Bootstrap components are implemented, but none of the JavaScript ones are (such as modals). There are also a number of other near-term goals:</p>
+<p>Right now, the entire set of standard Bootstrap components are implemented, but none of the JavaScript ones are (such as modals). There are also a number of other near-term goals:</p>
 
 @using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
 {
-    @list.ListItem("Update to Bootstrap 3.3.0 (this should be done very soon).")
     @list.ListItem("Implement all Bootstrap JavaScript components.")
     @list.ListItem("Support for T4MVC.")
     @list.ListItem("Support for NancyFx.")
