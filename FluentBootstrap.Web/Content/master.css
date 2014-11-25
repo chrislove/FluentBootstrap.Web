@@ -46,3 +46,10 @@ pre[class*="language-"] {
 .token.variable {
 	background: rgb(238, 238, 238);
 }
+
+.panel .table pre {
+    margin: 0px;
+    border: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}

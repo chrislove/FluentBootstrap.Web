@@ -10,76 +10,743 @@
         margin-bottom: 6px;
     }
 
-        .demo-grid > div {
-            border: 1px solid #ccc;
-            background-color: #eee;
+        .demo-grid > div[class^="col-"] {
+            border: 1px solid #666;
+            background-color: #999;
+            color: white;
         }
 </style>
 
-<p>FluentBootstrap implements all CSS functionality from Bootstrap. The following are some select examples of how to use it. They roughly follow the examples in the Bootstrap documentation, but often include some implementation differences to highlight the additional functionality of FluentBotostrap. For a full list of Bootstrap capabilities and the canonical reference, @Html.Bootstrap(this).Link("see the Bootstrap CSS documentation", "http://getbootstrap.com/css/").</p>
+<p>FluentBootstrap implements all CSS functionality from Bootstrap. The following are some select examples of how to use it. They roughly follow the examples in the Bootstrap documentation, but often include some implementation differences to highlight the additional functionality of FluentBotostrap. For a full list of Bootstrap capabilities and the canonical reference, @Html.Bootstrap(this).Link("see the Bootstrap documentation", "http://getbootstrap.com/css/").</p>
 
-@Html.Bootstrap(this).PageHeader("Grid system")
+@Html.Bootstrap(this).PageHeader("Grid system").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-example-basic").ToString())
 
-@Html.Bootstrap(this).Heading3("Example: Stacked-to-horizontal")
+@**********************************@
 
-@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+@Html.Bootstrap(this).Heading2("Example: Stacked-to-horizontal").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-example-basic").ToString())
+
+<p>In addition to demonstrating the stacked-to-horizontal concept, this example also shows several different ways to create grid columns including in a loop, within disposable blocks, using the fluent interface, and using HTML with the FluentBootstrap provided static <code>Css</code> class (which contains all of the CSS classes in Bootstrap).</p>
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
 {
-    for (int c = 0; c < 12; c++)
+    using(panel.PanelBody().Begin())
     {
-        @row.GridColumn(1).AddContent("Md 1")
+        <text>
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                for (int c = 0; c < 12; c++)
+                {
+                    @row.GridColumn(1).AddContent("Md 1")
+                }
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                using (row.GridColumn(8).Begin())
+                {
+                    <text>Md 8</text>
+                }
+                using (row.GridColumn(4).Begin())
+                {
+                    <text>Md 4</text>
+                }
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(4).AddContent("Md 4")
+                @row.GridColumn(4).AddContent("Md 4")
+                @row.GridColumn(4).AddContent("Md 4")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                <div class="@Css.ColMd6">Md 6</div>
+                <div class="@Css.ColMd6">Md 6</div>
+            }
+        </text>
     }
-}
-@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
-{
-    using (row.GridColumn(8).Begin())
+    using(panel.PanelTable().Begin())
     {
-        <text>Md 8</text>
+        @Html.Code(@"@using (var row = Html.Bootstrap().GridRow().Begin())
+        {
+            for (int c = 0; c < 12; c++)
+            {
+                @row.GridColumn(1).AddContent(""Md 1"")
+            }
+        }
+        @using (var row = Html.Bootstrap().GridRow().Begin())
+        {
+            using (row.GridColumn(8).Begin())
+            {
+                <text>Md 8</text>
+            }
+            using (row.GridColumn(4).Begin())
+            {
+                <text>Md 4</text>
+            }
+        }
+        @using (var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn(4).AddContent(""Md 4"")
+            @row.GridColumn(4).AddContent(""Md 4"")
+            @row.GridColumn(4).AddContent(""Md 4"")
+        }
+        @using (var row = Html.Bootstrap().GridRow().Begin())
+        {
+            <div class=""@Css.ColMd6"">Md 6</div>
+            <div class=""@Css.ColMd6"">Md 6</div>
+        }")
     }
-    using (row.GridColumn(4).Begin())
-    {
-        <text>Md 4</text>
-    }
-}
-@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
-{
-    @row.GridColumn(4).AddContent("Md 4")
-    @row.GridColumn(4).AddContent("Md 4")
-    @row.GridColumn(4).AddContent("Md 4")
-}
-@using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
-{
-    <div class="@Css.ColMd6">Md 6</div>
-    <div class="@Css.ColMd6">Md 6</div>
 }
 
-<p>In addition to demonstrating the stacked-to-horizontal concept, this code also shows several different ways to create grid columns including in a loop, within disposable blocks, using the fluent interface, and using HTML with the FluentBootstrap provided static <code>Css</code> class (which contains all of the CSS classes in Bootstrap).</p>
+@**********************************@
 
-<pre><code class="language-csharp">@Html.Raw(HttpUtility.HtmlEncode(@"@using (var row = Html.Bootstrap().GridRow().Begin())
+@Html.Bootstrap(this).Heading2("Example: Fluid container").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-example-fluid").ToString())
+
+@Html.Code(@"@using(var container = Html.Bootstrap().Container().SetFluid().Begin())
 {
-    for (int c = 0; c < 12; c++)
+    using(var row = container.GridRow().Begin())
     {
-        @row.GridColumn(1).AddContent(""Md 1"")
+        ...
+    }
+}")
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Example: Mobile and desktop").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-example-mixed").ToString())
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using(panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(8).SetXs(12).AddContent("Md8 Xs12")
+                @row.GridColumn(4).SetXs(6).AddContent("Md4 Xs6")
+            }
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent("Md4 Xs6")
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent("Md4 Xs6")
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent("Md4 Xs6")
+            }
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn().SetXs(6).AddContent("Xs6")
+                @row.GridColumn().SetXs(6).AddContent("Xs6")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn(8).SetXs(12).AddContent(""Md8 Xs12"")
+            @row.GridColumn(4).SetXs(6).AddContent(""Md4 Xs6"")
+        }
+        @using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+            @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+            @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+        }
+        @using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn().SetXs(6).AddContent(""Xs6"")
+            @row.GridColumn().SetXs(6).AddContent(""Xs6"")
+        }")
     }
 }
-@using (var row = Html.Bootstrap().GridRow().Begin())
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Responsive column resets").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-responsive-resets").ToString())
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
 {
-    using (row.GridColumn(8).Begin())
+    using(panel.PanelBody().Begin())
     {
-        <text>Md 8</text>
+        <text>
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                using(row.GridColumn().SetXs(6).SetSm(3).Begin())
+                {
+                    <text>
+                        Xs6 Sm3<br />
+                        Second Line<br />
+                        Third Line
+                    </text>
+                }
+    
+                @row.GridColumn().SetXs(6).SetSm(3).AddContent("Xs6 Sm3")
+    
+                @Html.Bootstrap(this).Clearfix().SetVisibility(Visibility.VisibleXsBlock)
+
+                @row.GridColumn().SetXs(6).SetSm(3).AddContent("Xs6 Sm3")
+                @row.GridColumn().SetXs(6).SetSm(3).AddContent("Xs6 Sm3")
+            }
+        </text>
     }
-    using (row.GridColumn(4).Begin())
+    using (panel.PanelTable().Begin())
     {
-        <text>Md 4</text>
+        @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            using(row.GridColumn().SetXs(6).SetSm(3).Begin())
+            {
+                <text>
+                    Xs6 Sm3<br />
+                    Second Line<br />
+                    Third Line
+                </text>
+            }
+            @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
+
+            @Html.Bootstrap().Clearfix().SetVisibility(Visibility.VisibleXsBlock)
+
+            @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
+            @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
+        }")
     }
 }
-@using (var row = Html.Bootstrap().GridRow().Begin())
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Offsetting columns").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-offsetting").ToString())
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
 {
-    @row.GridColumn(4).AddContent(""Md 4"")
-    @row.GridColumn(4).AddContent(""Md 4"")
-    @row.GridColumn(4).AddContent(""Md 4"")
+    using(panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(4).AddContent("Md4")
+                @row.GridColumn(4).SetMdOffset(4).AddContent("Md4 MdOffset4")
+            }
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(3).SetMdOffset(3).AddContent("Md3 MdOffset3")
+                @row.GridColumn(3).SetMdOffset(3).AddContent("Md3 MdOffset3")
+            }
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(6).SetMdOffset(3).AddContent("Md6 MdOffset3")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn(4).AddContent(""Md4"")
+            @row.GridColumn(4).SetMdOffset(4).AddContent(""Md4 MdOffset4"")
+        }
+        @using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
+            @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
+        }
+        @using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn(6).SetMdOffset(3).AddContent(""Md6 MdOffset3"")
+        }")
+    }
 }
-@using (var row = Html.Bootstrap().GridRow().Begin())
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Nesting columns").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-nesting").ToString())
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
 {
-    <div class=""@Css.ColMd6"">Md 6</div>
-    <div class=""@Css.ColMd6"">Md 6</div>
-}"))</code></pre>
+    using(panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                using(row.GridColumn().SetSm(9).Begin())
+                {
+                    <text>Level 1: Sm9</text>
+                    using(var innerRow = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+                    {
+                        @innerRow.GridColumn().SetXs(8).SetSm(6).AddContent("Level 2: Xs8 Sm6")
+                        @innerRow.GridColumn().SetXs(4).SetSm(6).AddContent("Level 2: Xs4 Sm6")
+                    }
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+        {
+            using(row.GridColumn().SetSm(9).Begin())
+            {
+                <text>Level 1: Sm9</text>
+                using(var innerRow = Html.Bootstrap().GridRow().Begin())
+                {
+                    @innerRow.GridColumn().SetXs(8).SetSm(6).AddContent(""Level 2: Xs8 Sm6"")
+                    @innerRow.GridColumn().SetXs(4).SetSm(6).AddContent(""Level 2: Xs4 Sm6"")
+                }
+            }
+        }")
+    }
+}
+    
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Column ordering").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#grid-example-fluid").ToString())
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using(panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(9).SetMdPush(3).AddContent("Md9 MdPush3")
+                @row.GridColumn(3).SetMdPull(9).AddContent("Md3 MdPull9")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var row = Html.Bootstrap().GridRow().Begin())
+        {
+            @row.GridColumn(9).SetMdPush(3).AddContent(""Md9 MdPush3"")
+            @row.GridColumn(3).SetMdPull(9).AddContent(""Md3 MdPull9"")
+        }")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).PageHeader("Typography")
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Headings").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-headings").ToString())
+
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using(panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Heading1("Heading 1. Bootstrap Heading")
+            <hr />
+            @Html.Bootstrap(this).Heading2("Heading 2. Bootstrap Heading").SetSmallText("Secondary text")
+            <hr />
+            @Html.Bootstrap(this).Heading3("Heading 3. Bootstrap Heading")
+            <hr />
+            @using(var heading = Html.Bootstrap(this).Heading4("Heading 4. Bootstrap Heading").Begin())
+            {
+                @heading.Small("Secondary text")
+            }
+            <hr />
+            @Html.Bootstrap(this).Heading5("Heading 5. Bootstrap Heading")
+            <hr />
+            @Html.Bootstrap(this).Heading6("Heading 6. Bootstrap Heading").WithChild().Small("Secondary text")
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Heading1(""Heading 1. Bootstrap Heading"")
+@Html.Bootstrap().Heading2(""Heading 2. Bootstrap Heading"").SetSmallText(""Secondary text"")
+@Html.Bootstrap().Heading3(""Heading 3. Bootstrap Heading"")
+@using(var heading = Html.Bootstrap().Heading4(""Heading 4. Bootstrap Heading"").Begin())
+{
+    @heading.Small(""Secondary text"")
+}
+@Html.Bootstrap().Heading5(""Heading 5. Bootstrap Heading"")
+@Html.Bootstrap().Heading6(""Heading 6. Bootstrap Heading"").WithChild().Small(""Secondary text"")")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Lead body copy").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-body-copy").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Lead("Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.")
+            @using(Html.Bootstrap(this).Lead().Begin())
+            {
+                <text>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</text>
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Lead(""Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus."")
+@using(Html.Bootstrap().Lead().Begin())
+{
+    <text>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</text>
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Alignment classes").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-alignment").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Paragraph("Left aligned text.").SetAlignment(TextAlignment.Left)
+            @Html.Bootstrap(this).Paragraph("Center aligned text.").SetAlignment(TextAlignment.Center)
+            @Html.Bootstrap(this).Paragraph("Right aligned text.").SetAlignment(TextAlignment.Right)
+            @Html.Bootstrap(this).Paragraph("Justified text.").SetAlignment(TextAlignment.Justify)
+            @Html.Bootstrap(this).Paragraph("No wrap text.").SetAlignment(TextAlignment.Nowrap)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Paragraph(""Left aligned text."").SetAlignment(TextAlignment.Left)
+@Html.Bootstrap().Paragraph(""Center aligned text."").SetAlignment(TextAlignment.Center)
+@Html.Bootstrap().Paragraph(""Right aligned text."").SetAlignment(TextAlignment.Right)
+@Html.Bootstrap().Paragraph(""Justified text."").SetAlignment(TextAlignment.Justify)
+@Html.Bootstrap().Paragraph(""No wrap text."").SetAlignment(TextAlignment.Nowrap)")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Transformation classes").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-transformation").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Paragraph("Lowercased text.").SetTransformation(TextTransformation.Lowercase)
+            @Html.Bootstrap(this).Paragraph("Uppercased text.").SetTransformation(TextTransformation.Uppercase)
+            @Html.Bootstrap(this).Paragraph("Capitalized text.").SetTransformation(TextTransformation.Capitalize)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Paragraph(""Lowercased text."").SetTransformation(TextTransformation.Lowercase)
+@Html.Bootstrap().Paragraph(""Uppercased text."").SetTransformation(TextTransformation.Uppercase)
+@Html.Bootstrap().Paragraph(""Capitalized text."").SetTransformation(TextTransformation.Capitalize)")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Abbreviations").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-abbreviations").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            <p>An abbreviation of the word attribute is @Html.Bootstrap(this).Abbreviation("attribute", "attr").</p>
+            <p>@Html.Bootstrap(this).Abbreviation("HyperText Markup Language", "HTML").SetInitialism() is the best thing since sliced bread.</p>
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"<p>An abbreviation of the word attribute is @Html.Bootstrap().Abbreviation(""attribute"", ""attr"").</p>
+<p>@Html.Bootstrap().Abbreviation(""HyperText Markup Language"", ""HTML"").SetInitialism() is the best thing since sliced bread.</p>")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Addresses").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-addresses").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(Html.Bootstrap(this).Address().Begin())
+            {
+                <text>
+                    <strong>Twitter, Inc.</strong><br>
+                    795 Folsom Ave, Suite 600<br>
+                    San Francisco, CA 94107<br>
+                    @Html.Bootstrap(this).Abbreviation("Phone", "P:") (123) 456-7890
+                </text>
+            }
+            @using (Html.Bootstrap(this).Address().Begin())
+            {
+                <strong>Full Name</strong><br>
+                @Html.Bootstrap(this).Link("first.last@example.com", "mailto:")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(Html.Bootstrap().Address().Begin())
+{
+    <text>
+        <strong>Twitter, Inc.</strong><br>
+        795 Folsom Ave, Suite 600<br>
+        San Francisco, CA 94107<br>
+        @Html.Bootstrap().Abbreviation(""Phone"", ""P:"") (123) 456-7890
+    </text>
+}
+@using (Html.Bootstrap().Address().Begin())
+{
+    <strong>Full Name</strong><br>
+    @Html.Bootstrap().Link(""first.last@example.com"", ""mailto:"")
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Blockquotes").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-blockquotes").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Blockquote("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+            @Html.Bootstrap(this).Blockquote("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.", "Someone famous in Source Title")
+            @Html.Bootstrap(this).Blockquote("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.", "Someone famous in Source Title").SetReverse()
+            @using(Html.Bootstrap(this).Blockquote().Begin())
+            {
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer>Someone famous in @Html.Bootstrap(this).Cite("Source Title", "Source Title")</footer>
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Blockquote(""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."")
+@Html.Bootstrap(this).Blockquote(""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."", ""Someone famous in Source Title"")
+@Html.Bootstrap(this).Blockquote(""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."", ""Someone famous in Source Title"").SetReverse()
+@using(Html.Bootstrap(this).Blockquote().Begin())
+{
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    <footer>Someone famous in @Html.Bootstrap(this).Cite(""Source Title"", ""Source Title"")</footer>
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Lists").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#type-lists").ToString())
+
+@Html.Bootstrap(this).Heading3("Unordered")
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+            {
+                @list.ListItem("Lorem ipsum dolor sit amet")
+                @list.ListItem("Consectetur adipiscing elit")
+                @list.ListItem("Integer molestie lorem at massa")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+                {
+                    @innerList.ListItem("Phasellus iaculis neque")
+                    @innerList.ListItem("Vestibulum laoreet porttitor sem")
+                }
+                @list.ListItem("Aenean sit amet erat nunc")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+{
+    @list.ListItem(""Lorem ipsum dolor sit amet"")
+    @list.ListItem(""Consectetur adipiscing elit"")
+    @list.ListItem(""Integer molestie lorem at massa"")
+    using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+    {
+        @innerList.ListItem(""Phasellus iaculis neque"")
+        @innerList.ListItem(""Vestibulum laoreet porttitor sem"")
+    }
+    @list.ListItem(""Aenean sit amet erat nunc"")
+}")
+    }
+}
+
+@Html.Bootstrap(this).Heading3("Ordered")
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+            {
+                @list.ListItem("Lorem ipsum dolor sit amet")
+                @list.ListItem("Consectetur adipiscing elit")
+                @list.ListItem("Integer molestie lorem at massa")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+                {
+                    @innerList.ListItem("Phasellus iaculis neque")
+                    @innerList.ListItem("Vestibulum laoreet porttitor sem")
+                }
+                @list.ListItem("Aenean sit amet erat nunc")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+{
+    @list.ListItem(""Lorem ipsum dolor sit amet"")
+    @list.ListItem(""Consectetur adipiscing elit"")
+    @list.ListItem(""Integer molestie lorem at massa"")
+    using (var innerList = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+    {
+        @innerList.ListItem(""Phasellus iaculis neque"")
+        @innerList.ListItem(""Vestibulum laoreet porttitor sem"")
+    }
+    @list.ListItem(""Aenean sit amet erat nunc"")
+}")
+    }
+}
+
+@Html.Bootstrap(this).Heading3("Unstyled")
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).List(ListType.Unstyled).Begin())
+            {
+                @list.ListItem("Lorem ipsum dolor sit amet")
+                @list.ListItem("Consectetur adipiscing elit")
+                @list.ListItem("Integer molestie lorem at massa")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+                {
+                    @innerList.ListItem("Phasellus iaculis neque")
+                    @innerList.ListItem("Vestibulum laoreet porttitor sem")
+                }
+                @list.ListItem("Aenean sit amet erat nunc")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Unstyled).Begin())
+{
+    @list.ListItem(""Lorem ipsum dolor sit amet"")
+    @list.ListItem(""Consectetur adipiscing elit"")
+    @list.ListItem(""Integer molestie lorem at massa"")
+    using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+    {
+        @innerList.ListItem(""Phasellus iaculis neque"")
+        @innerList.ListItem(""Vestibulum laoreet porttitor sem"")
+    }
+    @list.ListItem(""Aenean sit amet erat nunc"")
+}")
+    }
+}
+
+@Html.Bootstrap(this).Heading3("Inline")
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).List(ListType.Inline).Begin())
+            {
+                @list.ListItem("Lorem ipsum")
+                @list.ListItem("Phasellus iaculis")
+                @list.ListItem("Nulla volutpat")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Inline).Begin())
+{
+    @list.ListItem(""Lorem ipsum dolor sit amet"")
+    @list.ListItem(""Phasellus iaculis"")
+    @list.ListItem(""Nulla volutpat"")
+}")
+    }
+}
+
+@Html.Bootstrap(this).Heading3("Description")
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var list = Html.Bootstrap(this).DescriptionList().Begin())
+            {
+                @list.DescriptionTerm("Description lists")
+                @list.Description("A description list is perfect for defining terms.")
+                @list.DescriptionTerm("Euismod")
+                @list.Description("Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.")
+                @list.DescriptionTerm("Malesuada porta")
+                @list.Description("Etiam porta sem malesuada magna mollis euismod.")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).DescriptionList().Begin())
+{
+    @list.DescriptionTerm(""Description lists"")
+    @list.Description(""A description list is perfect for defining terms."")
+    @list.DescriptionTerm(""Euismod"")
+    @list.Description(""Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus."")
+    @list.DescriptionTerm(""Malesuada porta"")
+    @list.Description(""Etiam porta sem malesuada magna mollis euismod."")
+}")
+    }
+}
+
+@Html.Bootstrap(this).Heading3("Horizontal description")
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).DescriptionList().SetHorizontal().Begin())
+            {
+                @list.DescriptionTerm("Description lists")
+                @list.Description("A description list is perfect for defining terms.")
+                @list.DescriptionTerm("Euismod")
+                @list.Description("Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.")
+                @list.DescriptionTerm("Malesuada porta")
+                @list.Description("Etiam porta sem malesuada magna mollis euismod.")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).DescriptionList().SetHorizontal().Begin())
+{
+    @list.DescriptionTerm(""Description lists"")
+    @list.Description(""A description list is perfect for defining terms."")
+    @list.DescriptionTerm(""Euismod"")
+    @list.Description(""Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus."")
+    @list.DescriptionTerm(""Malesuada porta"")
+    @list.Description(""Etiam porta sem malesuada magna mollis euismod."")
+}")
+    }
+}
+
+
+
+
+@*
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code()
+    }
+}
+*@
