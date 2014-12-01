@@ -6,6 +6,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <title>FluentBootstrap - @Page.Title</title>
+        <meta name="description" content="FluentBootstrap provides extensions, helper classes, model binding, and other goodies to help you use the Bootstrap CSS framework from .NET code." />
+        <meta name="keywords" content="ASP.NET,MVC,ASP.NET MVC,C#,HTML,HtmlHelpers,Web Development,Bootstrap,Twitter Bootstrap,CSS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
         <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
@@ -18,14 +20,26 @@
         @RenderSection("head", required: false)
     </head>
     <body>        
-        @using (var navbar = Html.Bootstrap(this).Navbar("FluentBootstrap", "/").SetPosition(NavbarPosition.StaticTop).SetFluid(false).AddStyle("margin-bottom", "0px").Begin())
+        @using (var navbar = Html.Bootstrap(this).Navbar().SetPosition(NavbarPosition.StaticTop).SetFluid(false).AddStyle("margin-bottom", "0px").Begin())
         {
+            using (navbar.NavbarHeader().Begin())
+            {
+                using(navbar.Brand(null, "/").Begin())
+                {
+                    <text>@Html.Bootstrap(this).Image("/Content/fb-icon-20px.png")</text>
+                }
+                using (navbar.Brand(null, "/").Begin())
+                {
+                    <text> FluentBootstrap</text>
+                }
+            }
             @navbar.NavbarLink("Installation", "/Installation").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Installation"))
             @navbar.NavbarLink("Usage", "/Usage").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Usage"))
             @navbar.NavbarLink("CSS", "/CSS").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/CSS"))
             //@navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
             //@navbar.NavbarLink("JavaScript", "/JavaScript").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/JavaScript"))
             //@navbar.NavbarLink("MVC", "/MVC").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/MVC"))
+            //@navbar.NavbarLink("Extras", "/Extras").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Extras"))
             @navbar.NavbarLink("Development", "/Development").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Development"))
             @navbar.NavbarLink("GitHub", "https://github.com/somedave/FluentBootstrap")
         }

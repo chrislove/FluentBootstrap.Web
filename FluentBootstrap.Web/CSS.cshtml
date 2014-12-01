@@ -733,10 +733,71 @@
     }
 }
 
+@**********************************@
 
+@Html.Bootstrap(this).PageHeader("Tables")
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Basic example").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-example").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var table = Html.Bootstrap(this).Table().Begin())
+            {
+                @table.TableHeaderRow("#", "First Name", "Last Name", "Username")
+                @table.TableDataRow("1", "Mark", "Otto", "@mdo")
+                @table.TableDataRow("2", "Jacob", "Thornton", "@fat")
+            }            
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var table = Html.Bootstrap(this).Table().Begin())
+{
+    @table.TableHeaderRow(""#"", ""First Name"", ""Last Name"", ""Username"")
+    @table.TableDataRow(""1"", ""Mark"", ""Otto"", ""@mdo"")
+    @table.TableDataRow(""2"", ""Jacob"", ""Thornton"", ""@fat"")
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Striped rows").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-striped").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Striped).Begin())
+            {
+                @table.TableHeaderRow("#", "First Name", "Last Name", "Username")
+                @table.TableDataRow("1", "Mark", "Otto", "@mdo")
+                @table.TableDataRow("2", "Jacob", "Thornton", "@fat")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Striped).Begin())
+{
+    @table.TableHeaderRow(""#"", ""First Name"", ""Last Name"", ""Username"")
+    @table.TableDataRow(""1"", ""Mark"", ""Otto"", ""@mdo"")
+    @table.TableDataRow(""2"", ""Jacob"", ""Thornton"", ""@fat"")
+}")
+    }
+}
 
 
 @*
+
+@Html.Bootstrap(this).Heading2("").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "").ToString())
+
 @using (var panel = Html.Bootstrap(this).Panel().Begin())
 {
     using (panel.PanelBody().Begin())
