@@ -793,6 +793,246 @@
     }
 }
 
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Bordered table").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-bordered").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Bordered).Begin())
+            {
+                @table.TableHeaderRow("#", "First Name", "Last Name", "Username")
+                using(table.TableDataRow().Begin())
+                {
+                    @table.TableData("1").RowSpan(2)
+                    @table.TableData("Mark")
+                    @table.TableData("Otto")
+                    @table.TableData("@mdo")
+                }
+                using(table.TableDataRow().Begin())
+                {
+                    @table.TableData("Mark")
+                    @table.TableData("Otto")
+                    @table.TableData("@TwBootstrap")
+                }
+                @table.TableDataRow("2", "Jacob", "Thornton", "@fat")
+                using (table.TableDataRow().Begin())
+                {
+                    @table.TableData("3")
+                    @table.TableData("Larry The Bird").ColSpan(2)
+                    @table.TableData("@twitter")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Bordered).Begin())
+{
+    @table.TableHeaderRow(""#"", ""First Name"", ""Last Name"", ""Username"")
+    using(table.TableDataRow().Begin())
+    {
+        @table.TableData(""1"").RowSpan(2)
+        @table.TableData(""Mark"")
+        @table.TableData(""Otto"")
+        @table.TableData(""@mdo"")
+    }
+    using(table.TableDataRow().Begin())
+    {
+        @table.TableData(""Mark"")
+        @table.TableData(""Otto"")
+        @table.TableData(""@TwBootstrap"")
+    }
+    @table.TableDataRow(""2"", ""Jacob"", ""Thornton"", ""@fat"")
+    using (table.TableDataRow().Begin())
+    {
+        @table.TableData(""3"")
+        @table.TableData(""Larry The Bird"").ColSpan(2)
+        @table.TableData(""@twitter"")
+    }
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Hover rows").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-hover-rows").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Hover).Begin())
+            {
+                @table.TableHeaderRow("#", "First Name", "Last Name", "Username")
+                @table.TableDataRow("1", "Mark", "Otto", "@mdo")
+                @table.TableDataRow("2", "Jacob", "Thornton", "@fat")
+                using (table.TableDataRow().Begin())
+                {
+                    @table.TableData("3")
+                    @table.TableData("Larry The Bird").ColSpan(2)
+                    @table.TableData("@twitter")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Hover).Begin())
+{
+    @table.TableHeaderRow(""#"", ""First Name"", ""Last Name"", ""Username"")
+    @table.TableDataRow(""1"", ""Mark"", ""Otto"", ""@mdo"")
+    @table.TableDataRow(""2"", ""Jacob"", ""Thornton"", ""@fat"")
+    using (table.TableDataRow().Begin())
+    {
+        @table.TableData(""3"")
+        @table.TableData(""Larry The Bird"").ColSpan(2)
+        @table.TableData(""@twitter"")
+    }
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Condensed table").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-condensed").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Condensed).Begin())
+            {
+                @table.TableHeaderRow("#", "First Name", "Last Name", "Username")
+                @table.TableDataRow("1", "Mark", "Otto", "@mdo")
+                @table.TableDataRow("2", "Jacob", "Thornton", "@fat")
+                using (table.TableDataRow().Begin())
+                {
+                    @table.TableData("3")
+                    @table.TableData("Larry The Bird").ColSpan(2)
+                    @table.TableData("@twitter")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Condensed).Begin())
+{
+    @table.TableHeaderRow(""#"", ""First Name"", ""Last Name"", ""Username"")
+    @table.TableDataRow(""1"", ""Mark"", ""Otto"", ""@mdo"")
+    @table.TableDataRow(""2"", ""Jacob"", ""Thornton"", ""@fat"")
+    using (table.TableDataRow().Begin())
+    {
+        @table.TableData(""3"")
+        @table.TableData(""Larry The Bird"").ColSpan(2)
+        @table.TableData(""@twitter"")
+    }
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Contextual classes").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-contextual-classes").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var table = Html.Bootstrap(this).Table().Begin())
+            {
+                @table.TableHeaderRow("#", "Heading", "Heading", "Heading")
+                @table.TableDataRow("1", "Content", "Content", "Content")
+                @table.TableDataRow("2", "Content", "Content", "Content").SetState(TableState.Active)
+                @table.TableDataRow("3", "Content", "Content", "Content").SetState(TableState.Success)
+                @table.TableDataRow("4", "Content", "Content", "Content").SetState(TableState.Info)
+                @table.TableDataRow("5", "Content", "Content", "Content").SetState(TableState.Warning)
+                @table.TableDataRow("6", "Content", "Content", "Content").SetState(TableState.Danger)
+                @table.TableDataRow("7", "Content", "Content", "Content").SetState(TableState.Default)
+                using(var row = table.TableDataRow().Begin())
+                {
+                    @row.TableData("8")
+                    @row.TableData("Content").SetState(TableState.Active)
+                    @row.TableData("Content").SetState(TableState.Success)
+                    @row.TableData("Content").SetState(TableState.Info)
+                }
+                using (var row = table.TableDataRow().Begin())
+                {
+                    @row.TableData("9")
+                    @row.TableData("Content").SetState(TableState.Warning)
+                    @row.TableData("Content").SetState(TableState.Danger)
+                    @row.TableData("Content").SetState(TableState.Default)
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var table = Html.Bootstrap(this).Table().Begin())
+{
+    @table.TableHeaderRow(""#"", ""Heading"", ""Heading"", ""Heading"")
+    @table.TableDataRow(""1"", ""Content"", ""Content"", ""Content"")
+    @table.TableDataRow(""2"", ""Content"", ""Content"", ""Content"").SetState(TableState.Active)
+    @table.TableDataRow(""3"", ""Content"", ""Content"", ""Content"").SetState(TableState.Success)
+    @table.TableDataRow(""4"", ""Content"", ""Content"", ""Content"").SetState(TableState.Info)
+    @table.TableDataRow(""5"", ""Content"", ""Content"", ""Content"").SetState(TableState.Warning)
+    @table.TableDataRow(""6"", ""Content"", ""Content"", ""Content"").SetState(TableState.Danger)
+    @table.TableDataRow(""7"", ""Content"", ""Content"", ""Content"").SetState(TableState.Default)
+    using(var row = table.TableDataRow().Begin())
+    {
+        @row.TableData(""8"")
+        @row.TableData(""Content"").SetState(TableState.Active)
+        @row.TableData(""Content"").SetState(TableState.Success)
+        @row.TableData(""Content"").SetState(TableState.Info)
+    }
+    using (var row = table.TableDataRow().Begin())
+    {
+        @row.TableData(""9"")
+        @row.TableData(""Content"").SetState(TableState.Warning)
+        @row.TableData(""Content"").SetState(TableState.Danger)
+        @row.TableData(""Content"").SetState(TableState.Default)
+    }
+}")
+    }
+}
+
+@**********************************@
+
+@Html.Bootstrap(this).Heading2("Responsive tables").SetSmallText(Html.Bootstrap(this).Link("Bootstrap Documentation", "http://getbootstrap.com/css/#tables-responsive").ToString())
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Bordered | TableStyle.Striped).SetResponsive().Begin())
+            {
+                @table.TableHeaderRow("#", "Heading", "Heading", "Heading", "Heading", "Heading", "Heading")
+                @table.TableDataRow("1", "Content", "Content", "Content", "Content", "Content", "Content")
+                @table.TableDataRow("2", "Content", "Content", "Content", "Content", "Content", "Content")
+                @table.TableDataRow("3", "Content", "Content", "Content", "Content", "Content", "Content")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var table = Html.Bootstrap(this).Table().SetStyle(TableStyle.Bordered | TableStyle.Striped).SetResponsive().Begin())
+{
+    @table.TableHeaderRow(""#"", ""Heading"", ""Heading"", ""Heading"", ""Heading"", ""Heading"", ""Heading"")
+    @table.TableDataRow(""1"", ""Content"", ""Content"", ""Content"", ""Content"", ""Content"", ""Content"")
+    @table.TableDataRow(""2"", ""Content"", ""Content"", ""Content"", ""Content"", ""Content"", ""Content"")
+    @table.TableDataRow(""3"", ""Content"", ""Content"", ""Content"", ""Content"", ""Content"", ""Content"")
+}")
+    }
+}
+
 
 @*
 
