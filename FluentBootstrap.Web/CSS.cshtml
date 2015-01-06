@@ -66,34 +66,34 @@
     using(panel.PanelTable().Begin())
     {
         @Html.Code(@"@using (var row = Html.Bootstrap().GridRow().Begin())
-        {
-            for (int c = 0; c < 12; c++)
-            {
-                @row.GridColumn(1).AddContent(""Md 1"")
-            }
-        }
-        @using (var row = Html.Bootstrap().GridRow().Begin())
-        {
-            using (row.GridColumn(8).Begin())
-            {
-                <text>Md 8</text>
-            }
-            using (row.GridColumn(4).Begin())
-            {
-                <text>Md 4</text>
-            }
-        }
-        @using (var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn(4).AddContent(""Md 4"")
-            @row.GridColumn(4).AddContent(""Md 4"")
-            @row.GridColumn(4).AddContent(""Md 4"")
-        }
-        @using (var row = Html.Bootstrap().GridRow().Begin())
-        {
-            <div class=""@Css.ColMd6"">Md 6</div>
-            <div class=""@Css.ColMd6"">Md 6</div>
-        }")
+{
+    for (int c = 0; c < 12; c++)
+    {
+        @row.GridColumn(1).AddContent(""Md 1"")
+    }
+}
+@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    using (row.GridColumn(8).Begin())
+    {
+        <text>Md 8</text>
+    }
+    using (row.GridColumn(4).Begin())
+    {
+        <text>Md 4</text>
+    }
+}
+@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    @row.GridColumn(4).AddContent(""Md 4"")
+    @row.GridColumn(4).AddContent(""Md 4"")
+    @row.GridColumn(4).AddContent(""Md 4"")
+}
+@using (var row = Html.Bootstrap().GridRow().Begin())
+{
+    <div class=""@Css.ColMd6"">Md 6</div>
+    <div class=""@Css.ColMd6"">Md 6</div>
+}")
     }
 }
 
@@ -139,21 +139,21 @@
     using (panel.PanelTable().Begin())
     {
         @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn(8).SetXs(12).AddContent(""Md8 Xs12"")
-            @row.GridColumn(4).SetXs(6).AddContent(""Md4 Xs6"")
-        }
-        @using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
-            @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
-            @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
-        }
-        @using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn().SetXs(6).AddContent(""Xs6"")
-            @row.GridColumn().SetXs(6).AddContent(""Xs6"")
-        }")
+{
+    @row.GridColumn(8).SetXs(12).AddContent(""Md8 Xs12"")
+    @row.GridColumn(4).SetXs(6).AddContent(""Md4 Xs6"")
+}
+@using(var row = Html.Bootstrap().GridRow().Begin())
+{
+    @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+    @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+    @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+}
+@using(var row = Html.Bootstrap().GridRow().Begin())
+{
+    @row.GridColumn().SetXs(6).AddContent(""Xs6"")
+    @row.GridColumn().SetXs(6).AddContent(""Xs6"")
+}")
     }
 }
 
@@ -189,22 +189,22 @@
     using (panel.PanelTable().Begin())
     {
         @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            using(row.GridColumn().SetXs(6).SetSm(3).Begin())
-            {
-                <text>
-                    Xs6 Sm3<br />
-                    Second Line<br />
-                    Third Line
-                </text>
-            }
-            @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
+{
+    using(row.GridColumn().SetXs(6).SetSm(3).Begin())
+    {
+        <text>
+            Xs6 Sm3<br />
+            Second Line<br />
+            Third Line
+        </text>
+    }
+    @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
 
-            @Html.Bootstrap().Clearfix().SetVisibility(Visibility.VisibleXsBlock)
+    @Html.Bootstrap().Clearfix().SetVisibility(Visibility.VisibleXsBlock)
 
-            @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
-            @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
-        }")
+    @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
+    @row.GridColumn().SetXs(6).SetSm(3).AddContent(""Xs6 Sm3"")
+}")
     }
 }
 
@@ -236,19 +236,19 @@
     using (panel.PanelTable().Begin())
     {
         @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn(4).AddContent(""Md4"")
-            @row.GridColumn(4).SetMdOffset(4).AddContent(""Md4 MdOffset4"")
-        }
-        @using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
-            @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
-        }
-        @using(var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn(6).SetMdOffset(3).AddContent(""Md6 MdOffset3"")
-        }")
+{
+    @row.GridColumn(4).AddContent(""Md4"")
+    @row.GridColumn(4).SetMdOffset(4).AddContent(""Md4 MdOffset4"")
+}
+@using(var row = Html.Bootstrap().GridRow().Begin())
+{
+    @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
+    @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
+}
+@using(var row = Html.Bootstrap().GridRow().Begin())
+{
+    @row.GridColumn(6).SetMdOffset(3).AddContent(""Md6 MdOffset3"")
+}")
     }
 }
 
@@ -278,17 +278,17 @@
     using (panel.PanelTable().Begin())
     {
         @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+{
+    using(row.GridColumn().SetSm(9).Begin())
+    {
+        <text>Level 1: Sm9</text>
+        using(var innerRow = Html.Bootstrap().GridRow().Begin())
         {
-            using(row.GridColumn().SetSm(9).Begin())
-            {
-                <text>Level 1: Sm9</text>
-                using(var innerRow = Html.Bootstrap().GridRow().Begin())
-                {
-                    @innerRow.GridColumn().SetXs(8).SetSm(6).AddContent(""Level 2: Xs8 Sm6"")
-                    @innerRow.GridColumn().SetXs(4).SetSm(6).AddContent(""Level 2: Xs4 Sm6"")
-                }
-            }
-        }")
+            @innerRow.GridColumn().SetXs(8).SetSm(6).AddContent(""Level 2: Xs8 Sm6"")
+            @innerRow.GridColumn().SetXs(4).SetSm(6).AddContent(""Level 2: Xs4 Sm6"")
+        }
+    }
+}")
     }
 }
     
@@ -311,10 +311,10 @@
     using (panel.PanelTable().Begin())
     {
         @Html.Code(@"@using (var row = Html.Bootstrap().GridRow().Begin())
-        {
-            @row.GridColumn(9).SetMdPush(3).AddContent(""Md9 MdPush3"")
-            @row.GridColumn(3).SetMdPull(9).AddContent(""Md3 MdPull9"")
-        }")
+{
+    @row.GridColumn(9).SetMdPush(3).AddContent(""Md9 MdPush3"")
+    @row.GridColumn(3).SetMdPull(9).AddContent(""Md3 MdPull9"")
+}")
     }
 }
 
@@ -1051,3 +1051,6 @@
     }
 }
 *@
+
+<hr />
+@Html.Bootstrap(this).Well().AddContent("Note that this does not document the full feature set of FluentBootstrap. All functionality of the Bootstrap CSS framework is available (except for JavaScript components which are coming soon). Documentation and examples will continue to be added as time allows.")

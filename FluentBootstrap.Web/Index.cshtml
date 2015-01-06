@@ -78,6 +78,7 @@
 @Html.Bootstrap(this).PageHeader("Roadmap")
 <p>Right now, the entire set of standard Bootstrap components are implemented, but none of the JavaScript ones are (such as modals). There are also a number of other near-term goals:</p>
 
+
 @using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
 {
     @list.ListItem("Implement all Bootstrap JavaScript components.")
@@ -88,3 +89,6 @@
     @list.ListItem("Consider creating an independent core library to contain all HTML5 elements.")
     @list.ListItem("Better documentation, more tests, yadda, yadda, yadda.")
 }
+
+@Html.Bootstrap(this).PageHeader("Background")
+<p>FluentBootstrap started from a need for a Bootstrap 3 compatible wrapper for the Bootstrap framework within a large enterprise line of business application. We had <em>a lot</em> of view code and maintaining it during Bootstrap upgrades was getting cumbersome. This was especially true when dealing with sections that included Bootstrap styled HTML for model-bound data. The initial internal versions of FluentBootstrap were designed to provide strongly-typed wrappers around HTML form elements to style model-bound data with the appropriate elements and CSS. From there it grew to encompass the entire Bootstrap framework (with the JavaScript components coming soon). It's been in production use internally for over a year and I'm happy to release it to the public now that it's shown to be stable.</p>
