@@ -6,3 +6,15 @@
 }
 
 <p>FluentBootstrap is a complex library with <em>a lot</em> of generics. It's certainly not the cleanest code, but it gets the job done. In the near future, some guidelines for developing external extensions as well as for developing inside FluentBootstrap will be provided here.</p>
+
+@Html.Bootstrap(this).PageHeader("Release Notes").SetId("release-notes")
+
+<p>
+    <strong>3.3.1.3</strong>
+    @using (var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+    {
+        @list.ListItem("New FluentBootstrap.Mvc.T4MVC library with T4MVC support.")
+        @list.ListItem("Bug fixes (particularly for <code>.ToString()</code>).")
+        @list.ListItem("Major architecture refactoring to make development easier going forward.")
+    }
+</p>

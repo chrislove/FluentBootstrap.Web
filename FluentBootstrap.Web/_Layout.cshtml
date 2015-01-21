@@ -11,15 +11,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
         <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
-        <link href="~/Content/styles.css" rel="stylesheet" />
-        <link href="~/Content/prism.css" rel="stylesheet" />
+        <link href="~/Content/prettify.css" rel="stylesheet" />
+        <link href="~/Content/github.css" rel="stylesheet" />
         <link href="~/Content/master.css" rel="stylesheet" />
         <script src="~/Scripts/jquery-2.1.1.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>  
-        <script src="~/Scripts/prism.js"></script>              
+        <script src="~/Scripts/prettify.js"></script>           
         @RenderSection("head", required: false)
     </head>
-    <body>        
+    <body onload="prettyPrint()">        
         @using (var navbar = Html.Bootstrap(this).Navbar().SetPosition(NavbarPosition.StaticTop).SetFluid(false).AddStyle("margin-bottom", "0px").Begin())
         {
             using (navbar.NavbarHeader().Begin())
@@ -33,8 +33,7 @@
                     <text> FluentBootstrap</text>
                 }
             }
-            @navbar.NavbarLink("Installation", "/Installation").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Installation"))
-            @navbar.NavbarLink("Usage", "/Usage").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Usage"))
+            @navbar.NavbarLink("Getting Started", "/GettingStarted").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/GettingStarted"))
             @navbar.NavbarLink("CSS", "/CSS").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/CSS"))
             //@navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
             //@navbar.NavbarLink("JavaScript", "/JavaScript").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/JavaScript"))
@@ -49,7 +48,7 @@
             {
                 using(var grid = Html.Bootstrap(this).GridRow().Begin())
                 {
-                    using(grid.GridColumn(9).Begin())
+                    using(grid.GridColumn(9).SetSm(12).Begin())
                     {
                         string heading = Page.Heading ?? Page.Title;
                         @Html.Bootstrap(this).Heading1(heading)
@@ -58,7 +57,7 @@
                             <p>@Html.Raw(Page.Lead)</p>
                         }
                     }
-                    using (grid.GridColumn(3).Begin())
+                    using (grid.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
                     {
                         using (Html.Bootstrap(this).Panel().SetId("badges").Begin())
                         {
@@ -97,5 +96,5 @@
             ga('send', 'pageview');
 
         </script>
-    </body>
+    </bodyonload="prettyPrint()">
 </html>

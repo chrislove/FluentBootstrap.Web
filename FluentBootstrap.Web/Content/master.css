@@ -1,4 +1,9 @@
-﻿.jumbotron {
+﻿body {
+    position: relative;
+    height: 100%;
+}
+
+.jumbotron {
   background-image: -webkit-linear-gradient(top, #214F77 0%, #193B59 100%);
   background-image:      -o-linear-gradient(top, #214F77 0%, #193B59 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#214F77), to(#193B59));
@@ -19,38 +24,26 @@
     padding: 2px;
 }
 
-/* Prism and code styles */
-pre {
-    padding: 0;
+.affix {
+    top: 20px;
+}
+
+/* Code styles */
+pre,
+pre.prettyprint {
+    padding: 8px;
     margin: 0;
     overflow: auto;
     word-wrap: normal;
     word-break: normal;
+    border-color: #ddd;
+    background-color: rgb(238, 238, 238);
+    margin-bottom: 20px;
 }
 
-pre code {
-    white-space: pre;
-}
-
-code,
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+code {
     background-color: rgb(238, 238, 238);
     color: black;
-}
-
-code[class*="language-"],
-pre[class*="language-"] {
-    text-shadow: none;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-	background: rgb(238, 238, 238);
 }
 
 .panel .table pre {
