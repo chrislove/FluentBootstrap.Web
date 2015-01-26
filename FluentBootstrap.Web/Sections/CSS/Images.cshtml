@@ -1,0 +1,57 @@
+﻿@using FluentBootstrap
+
+<p>Create an image using <code>.Image()</code>. You can specify that the image is a link by using <code>.SetHref()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Image("http://placehold.it/350x150", "Placeholder Image")
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Image(""http://placehold.it/350x150"", ""Placeholder Image"")")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Responsive Images")
+
+<p>Make your image responsive so that it scales to the parent element by using <code>.SetResponsive()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Image("http://placehold.it/3000x500", "Placeholder Image").SetResponsive()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Image(""http://placehold.it/3000x500"", ""Placeholder Image"").SetResponsive()")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Image Shapes")
+
+<p>You can apply a variety of shapes to your image using <code>.SetStyle()</code> which takes a <code>ImageStyle</code> enum.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Image("http://placehold.it/140x140", "Rounded Image").SetStyle(ImageStyle.Rounded)
+            @Html.Bootstrap(this).Image("http://placehold.it/140x140", "Circle Image").SetStyle(ImageStyle.Circle)
+            @Html.Bootstrap(this).Image("http://placehold.it/140x140", "Thumbnail Image").SetStyle(ImageStyle.Thumbnail)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Image(""http://placehold.it/140x140"", ""Rounded Image"").SetStyle(ImageStyle.Rounded)
+            @Html.Bootstrap(this).Image(""http://placehold.it/140x140"", ""Circle Image"").SetStyle(ImageStyle.Circle)
+            @Html.Bootstrap(this).Image(""http://placehold.it/140x140"", ""Thumbnail Image"").SetStyle(ImageStyle.Thumbnail)")
+    }
+}

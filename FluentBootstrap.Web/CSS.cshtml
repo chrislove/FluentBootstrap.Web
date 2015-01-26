@@ -42,6 +42,9 @@
         @Html.Bootstrap(this).PageHeader("Buttons").SetId("buttons")
         @RenderPage("/Sections/CSS/Buttons.cshtml")
 
+        @Html.Bootstrap(this).PageHeader("Images").SetId("images")
+        @RenderPage("/Sections/CSS/Images.cshtml")
+
         <br />
         <br />
         <hr />
@@ -59,6 +62,7 @@
                 @pills.Pill("Tables", "#tables")
                 @pills.Pill("Forms", "#forms")
                 @pills.Pill("Buttons", "#buttons")
+                @pills.Pill("Images", "#images")
             }
         </div>
     }
