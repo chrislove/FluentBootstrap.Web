@@ -1,0 +1,186 @@
+﻿@using FluentBootstrap
+
+@Html.Bootstrap(this).Heading2("Containers")
+        
+<p>Create a page container using <code>.Container()</code>. To make the container fluid, use <code>.SetFluid()</code>.</p>
+@Html.Code(@"@using(var container = Html.Bootstrap().Container().SetFluid().Begin())
+    {
+        ...
+    }")
+
+@Html.Bootstrap(this).Heading2("Grids")
+    
+<p>Create a grid using <code>.GridRow()</code>, then use <code>.GridColumn()</code> to create the columns. The <code>.GridColumn()</code> method can optionally take an <code>Md</code> width of the column (for more sophisticated grid layouts see the next section). You can add content to the grid columns by using them as a disposable and putting content inside, or by using the <code>.AddContent()</code> method. As with all FluentBootstrap components, you can also use HTML directly and rely on the <code>Css</code> static class to provide the appropriate CSS class names. Each of these options is demonstrated below.</p>
+    
+@using(var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using(panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                for (int c = 0; c < 12; c++)
+                {
+                    @row.GridColumn(1).AddContent("Md 1")
+                }
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                using (row.GridColumn(8).Begin())
+                {
+                    <text>Md 8</text>
+                }
+                using (row.GridColumn(4).Begin())
+                {
+                    <text>Md 4</text>
+                }
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(4).AddContent("Md 4")
+                @row.GridColumn(4).AddContent("Md 4")
+                @row.GridColumn(4).AddContent("Md 4")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                <div class="@Css.ColMd6">Md 6</div>
+                <div class="@Css.ColMd6">Md 6</div>
+            }
+        </text>
+    }
+    using(panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var row = Html.Bootstrap().GridRow().Begin())
+            {
+                for (int c = 0; c < 12; c++)
+                {
+                    @row.GridColumn(1).AddContent(""Md 1"")
+                }
+            }
+            @using (var row = Html.Bootstrap().GridRow().Begin())
+            {
+                using (row.GridColumn(8).Begin())
+                {
+                    <text>Md 8</text>
+                }
+                using (row.GridColumn(4).Begin())
+                {
+                    <text>Md 4</text>
+                }
+            }
+            @using (var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn(4).AddContent(""Md 4"")
+                @row.GridColumn(4).AddContent(""Md 4"")
+                @row.GridColumn(4).AddContent(""Md 4"")
+            }
+            @using (var row = Html.Bootstrap().GridRow().Begin())
+            {
+                <div class=""@Css.ColMd6"">Md 6</div>
+                <div class=""@Css.ColMd6"">Md 6</div>
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Column Widths")
+    
+<p>For simple grids, just pass the number of columns to the <code>.GridColumn()</code> method. This will result in corresponding <code>.col-md-</code> CSS classes to be generated. For more complex grid layouts, you can use the <code>.SetXs()</code>, <code>.SetSm()</code>, <code>.SetMd()</code>, and <code>.SetLg()</code> methods. You can use more than one of these at a time to create sophisticated column schemes that change with the window size.</p>
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(8).SetXs(12).AddContent("Md8 Xs12")
+                @row.GridColumn(4).SetXs(6).AddContent("Md4 Xs6")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent("Md4 Xs6")
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent("Md4 Xs6")
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent("Md4 Xs6")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn().SetXs(6).AddContent("Xs6")
+                @row.GridColumn().SetXs(6).AddContent("Xs6")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn(8).SetXs(12).AddContent(""Md8 Xs12"")
+                @row.GridColumn(4).SetXs(6).AddContent(""Md4 Xs6"")
+            }
+            @using(var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+                @row.GridColumn().SetMd(4).SetXs(6).AddContent(""Md4 Xs6"")
+            }
+            @using(var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn().SetXs(6).AddContent(""Xs6"")
+                @row.GridColumn().SetXs(6).AddContent(""Xs6"")
+            }")
+    }
+}
+
+
+@Html.Bootstrap(this).Heading2("Column Offsets and Ordering")
+    
+<p>You can also further customize the grid by using <code>.SetMdOffset()</code>, <code>.SetMdPush()</code>, and <code>.SetMdPull()</code> methods (or their corresponding <code>Xs</code>, <code>Sm</code>, and <code>Lg</code> counterparts, all of which can be used together).</p>
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(4).AddContent("Md4")
+                @row.GridColumn(4).SetMdOffset(4).AddContent("Md4 MdOffset4")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(3).SetMdOffset(3).AddContent("Md3 MdOffset3")
+                @row.GridColumn(3).SetMdOffset(3).AddContent("Md3 MdOffset3")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(6).SetMdOffset(3).AddContent("Md6 MdOffset3")
+            }
+            @using (var row = Html.Bootstrap(this).GridRow().AddCss("demo-grid").Begin())
+            {
+                @row.GridColumn(9).SetMdPush(3).AddContent("Md9 MdPush3")
+                @row.GridColumn(3).SetMdPull(9).AddContent("Md3 MdPull9")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn(4).AddContent(""Md4"")
+                @row.GridColumn(4).SetMdOffset(4).AddContent(""Md4 MdOffset4"")
+            }
+            @using(var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
+                @row.GridColumn(3).SetMdOffset(3).AddContent(""Md3 MdOffset3"")
+            }
+            @using(var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn(6).SetMdOffset(3).AddContent(""Md6 MdOffset3"")
+            }
+            @using (var row = Html.Bootstrap().GridRow().Begin())
+            {
+                @row.GridColumn(9).SetMdPush(3).AddContent(""Md9 MdPush3"")
+                @row.GridColumn(3).SetMdPull(9).AddContent(""Md3 MdPull9"")
+            }")
+    }
+}

@@ -1,0 +1,207 @@
+﻿@using FluentBootstrap
+
+@Html.Bootstrap(this).Heading2("Headings")
+    
+<p>Use <code>.PageHeader()</code> for large headings with an underline. Use <code>.Heading1()</code> through <code>.Heading6()</code> for different size headings. Each of these methods optionally accepts a string for the heading text (or you can use <code>.AddContent()</code> or use the heading as a disposable object). You can also use <code>.SetSmallText()</code> to add some secondary text to the heading.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).PageHeader("Page Header")
+            @Html.Bootstrap(this).Heading1("Heading 1. Bootstrap Heading")
+            @Html.Bootstrap(this).Heading2("Heading 2. Bootstrap Heading").SetSmallText("Secondary text")
+            @Html.Bootstrap(this).Heading3("Heading 3. Bootstrap Heading")
+            @using (var heading = Html.Bootstrap(this).Heading4("Heading 4. Bootstrap Heading").Begin())
+            {
+                @heading.Small("Secondary text")
+            }
+            @Html.Bootstrap(this).Heading5("Heading 5. Bootstrap Heading")
+            @Html.Bootstrap(this).Heading6("Heading 6. Bootstrap Heading").WithChild().Small("Secondary text")
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().PageHeader(""Page Header"")
+            @Html.Bootstrap().Heading1(""Heading 1. Bootstrap Heading"")
+            @Html.Bootstrap().Heading2(""Heading 2. Bootstrap Heading"").SetSmallText(""Secondary text"")
+            @Html.Bootstrap().Heading3(""Heading 3. Bootstrap Heading"")
+            @using(var heading = Html.Bootstrap().Heading4(""Heading 4. Bootstrap Heading"").Begin())
+            {
+                @heading.Small(""Secondary text"")
+            }
+            @Html.Bootstrap().Heading5(""Heading 5. Bootstrap Heading"")
+            @Html.Bootstrap().Heading6(""Heading 6. Bootstrap Heading"").WithChild().Small(""Secondary text"")")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Leads")
+    
+<p>You can make text stand out, or "lead", with the <code>.Lead()</code> method.</p>
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Lead("Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.")
+            @using (Html.Bootstrap(this).Lead().Begin())
+            {
+                <text>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</text>
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Lead(""Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus."")
+            @using(Html.Bootstrap().Lead().Begin())
+            {
+                <text>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</text>
+            }")
+    }
+}
+        
+@Html.Bootstrap(this).Heading2("Alignment")
+    
+<p>You can use the <code>.SetAlignment()</code> method to specify text alignment for most other components.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Paragraph("Left aligned text.").SetAlignment(TextAlignment.Left)
+            @Html.Bootstrap(this).Paragraph("Center aligned text.").SetAlignment(TextAlignment.Center)
+            @Html.Bootstrap(this).Paragraph("Right aligned text.").SetAlignment(TextAlignment.Right)
+            @Html.Bootstrap(this).Paragraph("Justified text.").SetAlignment(TextAlignment.Justify)
+            @Html.Bootstrap(this).Paragraph("No wrap text.").SetAlignment(TextAlignment.Nowrap)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Paragraph(""Left aligned text."").SetAlignment(TextAlignment.Left)
+            @Html.Bootstrap().Paragraph(""Center aligned text."").SetAlignment(TextAlignment.Center)
+            @Html.Bootstrap().Paragraph(""Right aligned text."").SetAlignment(TextAlignment.Right)
+            @Html.Bootstrap().Paragraph(""Justified text."").SetAlignment(TextAlignment.Justify)
+            @Html.Bootstrap().Paragraph(""No wrap text."").SetAlignment(TextAlignment.Nowrap)")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Transformations")
+    
+<p>You can use <code>.SetTransformation()</code> to apply text transformations to most other components.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Paragraph("Lowercased text.").SetTransformation(TextTransformation.Lowercase)
+            @Html.Bootstrap(this).Paragraph("Uppercased text.").SetTransformation(TextTransformation.Uppercase)
+            @Html.Bootstrap(this).Paragraph("Capitalized text.").SetTransformation(TextTransformation.Capitalize)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap().Paragraph(""Lowercased text."").SetTransformation(TextTransformation.Lowercase)
+            @Html.Bootstrap().Paragraph(""Uppercased text."").SetTransformation(TextTransformation.Uppercase)
+            @Html.Bootstrap().Paragraph(""Capitalized text."").SetTransformation(TextTransformation.Capitalize)")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Abbreviations")
+    
+<p>Use <code>.Abbreviation()</code> to create abbreviations and acronyms. You can also use <code>.SetInitialism()</code> to give the abbreviation a slightly smaller font size.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            <p>An abbreviation of the word attribute is @Html.Bootstrap(this).Abbreviation("attribute", "attr").</p>
+            <p>@Html.Bootstrap(this).Abbreviation("HyperText Markup Language", "HTML").SetInitialism() is the best thing since sliced bread.</p>
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"<p>An abbreviation of the word attribute is @Html.Bootstrap().Abbreviation(""attribute"", ""attr"").</p>
+            <p>@Html.Bootstrap().Abbreviation(""HyperText Markup Language"", ""HTML"").SetInitialism() is the best thing since sliced bread.</p>")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Addresses")
+    
+<p>Wrap addresses with <code>.Address()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(Html.Bootstrap(this).Address().Begin())
+            {
+                <text>
+                    <strong>Twitter, Inc.</strong><br>
+                    795 Folsom Ave, Suite 600<br>
+                    San Francisco, CA 94107<br>
+                    @Html.Bootstrap(this).Abbreviation("Phone", "P:") (123) 456-7890
+                </text>
+            }
+            @using (Html.Bootstrap(this).Address().Begin())
+            {
+                <strong>Full Name</strong><br>
+                @Html.Bootstrap(this).Link("first.last@example.com", "mailto:")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(Html.Bootstrap().Address().Begin())
+            {
+                <text>
+                    <strong>Twitter, Inc.</strong><br>
+                    795 Folsom Ave, Suite 600<br>
+                    San Francisco, CA 94107<br>
+                    @Html.Bootstrap().Abbreviation(""Phone"", ""P:"") (123) 456-7890
+                </text>
+            }
+            @using (Html.Bootstrap().Address().Begin())
+            {
+                <strong>Full Name</strong><br>
+                @Html.Bootstrap().Link(""first.last@example.com"", ""mailto:"")
+            }")
+    }
+}
+        
+@Html.Bootstrap(this).Heading2("Blockquotes")
+    
+<p>Use <code>.Blockquote()</code> for creating blockquotes. You can also use <code>.SetReverse()</code> to make the content right-aligned.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Blockquote("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+            @Html.Bootstrap(this).Blockquote("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.", "Someone famous in Source Title")
+            @Html.Bootstrap(this).Blockquote("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.", "Someone famous in Source Title").SetReverse()
+            @using(Html.Bootstrap(this).Blockquote().Begin())
+            {
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer>Someone famous in @Html.Bootstrap(this).Cite("Source Title", "Source Title")</footer>
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Blockquote(""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."")
+            @Html.Bootstrap(this).Blockquote(""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."", ""Someone famous in Source Title"")
+            @Html.Bootstrap(this).Blockquote(""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."", ""Someone famous in Source Title"").SetReverse()
+            @using(Html.Bootstrap(this).Blockquote().Begin())
+            {
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer>Someone famous in @Html.Bootstrap(this).Cite(""Source Title"", ""Source Title"")</footer>
+            }")
+    }
+}

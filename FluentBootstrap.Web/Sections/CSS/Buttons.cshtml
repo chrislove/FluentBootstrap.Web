@@ -1,0 +1,117 @@
+﻿@using FluentBootstrap
+
+<p>You can create a variety of different buttons. Use <code>.Button()</code> to create standard <code>button</code> HTML elements (and use <code>.FormButton()</code>, <code>.Submit()</code>, or <code>.Reset()</code> to create <code>button</code> elements within a form to automatically generate the extra form wrapping elements). Use <code>.LinkButton()</code> to create buttons based on <code>a</code> HTML elements. As discussed above, you can also use <code>.InputButton()</code> to create buttons based on <code>input</code> HTML elements. All three button types share common styling and behavior extensions.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Button("Button")
+            @Html.Bootstrap(this).LinkButton("Link")
+            @Html.Bootstrap(this).InputButton("Input")
+            @Html.Bootstrap(this).InputButton("Submit", buttonType: ButtonType.Submit)
+            @Html.Bootstrap(this).Submit("Another Submit")
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Button(""Button"")
+            @Html.Bootstrap(this).LinkButton(""Link"")
+            @Html.Bootstrap(this).InputButton(""Input"")
+            @Html.Bootstrap(this).InputButton(""Submit"", buttonType: ButtonType.Submit)            
+            @Html.Bootstrap(this).Submit(""Another Submit"")")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("States")
+    
+<p>Use <code>.SetState()</code>, which takes a <code>ButtonState</code> enum, to change the state of the button (which generally means changing it's color). <code>ButtonState.Link</code> is a special state that makes the button look like a link.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Button("Primary").SetState(ButtonState.Primary)
+            @Html.Bootstrap(this).LinkButton("Success").SetState(ButtonState.Success)
+            @Html.Bootstrap(this).InputButton("Info").SetState(ButtonState.Info)
+            @Html.Bootstrap(this).InputButton("Warning", buttonType: ButtonType.Submit).SetState(ButtonState.Warning)
+            @Html.Bootstrap(this).Submit("Danger").SetState(ButtonState.Danger)
+            @Html.Bootstrap(this).Button("Link").SetState(ButtonState.Link)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Button(""Primary"").SetState(ButtonState.Primary)
+            @Html.Bootstrap(this).LinkButton(""Success"").SetState(ButtonState.Success)
+            @Html.Bootstrap(this).InputButton(""Info"").SetState(ButtonState.Info)
+            @Html.Bootstrap(this).InputButton(""Warning"", buttonType: ButtonType.Submit).SetState(ButtonState.Warning)
+            @Html.Bootstrap(this).Submit(""Danger"").SetState(ButtonState.Danger)
+            @Html.Bootstrap(this).Button(""Link"").SetState(ButtonState.Link)")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Sizes")
+
+<p>Use <code>.SetSize()</code>, which takes a <code>ButtonSize</code> enum, to change the size of a button.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Button("Xs").SetSize(ButtonSize.Xs)
+            @Html.Bootstrap(this).Button("Sm").SetSize(ButtonSize.Sm)
+            @Html.Bootstrap(this).Button("Default").SetSize(ButtonSize.Default)
+            @Html.Bootstrap(this).Button("Lg").SetSize(ButtonSize.Lg)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Button(""Xs"").SetSize(ButtonSize.Xs)
+            @Html.Bootstrap(this).Button(""Sm"").SetSize(ButtonSize.Sm)
+            @Html.Bootstrap(this).Button(""Default"").SetSize(ButtonSize.Default)
+            @Html.Bootstrap(this).Button(""Lg"").SetSize(ButtonSize.Lg)")
+    }
+}
+
+<p>Use <code>.SetBlock()</code> to make the button block-level.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Button("Xs").SetSize(ButtonSize.Xs).SetBlock()
+            @Html.Bootstrap(this).Button("Default").SetBlock()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Button(""Xs"").SetSize(ButtonSize.Xs).SetBlock()
+            @Html.Bootstrap(this).Button(""Default"").SetBlock()")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Disabled")
+
+<p>Use <code>.IsDisabled()</code> for buttons and input buttons and <code>.SetDisabled()</code> for link buttons to make the buttons appear disabled (the different method names are to avoid ambiguous name resolution problems in the compiler).</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Button("Button").IsDisabled()
+            @Html.Bootstrap(this).LinkButton("Link").SetDisabled()
+            @Html.Bootstrap(this).InputButton("Input").IsDisabled()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Button(""Button"").IsDisabled()
+            @Html.Bootstrap(this).LinkButton(""Link"").SetDisabled()
+            @Html.Bootstrap(this).InputButton(""Input"").IsDisabled()")
+    }
+}

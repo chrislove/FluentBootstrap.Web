@@ -1,0 +1,521 @@
+﻿@using FluentBootstrap;
+
+<p>FluentBootstrap supports the full set of form styles from Bootstrap and helps abstract some of the noise in specifying them via HTML (such as wrapping from controls with <code>form-group</code> divs). FluentBootstrap also includes advanced model binding support explained below.</p>
+    
+<p>To create a form, use <code>.Form()</code> which optionally accepts an action (URL) and/or method (POST, GET, etc). If using FluentBootstrap.Mvc you can specify an action and controller. If using FluentBootstrap.Mvc.T4MVC you can specify a T4MVC <code>ActionResult</code>.</p>
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input("name", "Your Name")
+                @form.CheckBox("check", "Check me out")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input(""name"", ""Your Name"")
+                @form.CheckBox(""check"", ""Check me out"")
+                @form.Submit()
+            }")
+    }
+}
+        
+@Html.Bootstrap(this).Heading2("Inline")
+    
+<p>Use <code>.SetInline()</code> to make the form inline. This will automatically make the necessary changes to markup for any form controls inside the form (including in partial views, etc).</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().SetInline().Begin())
+            {
+                @form.Input("name", "Your Name")
+                @form.CheckBox("check", "Check me out")                        
+                @form.Submit()                        
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var form = Html.Bootstrap(this).Form().SetInline().Begin())
+            {
+                @form.Input(""name"", ""Your Name"")
+                @form.CheckBox(""check"", ""Check me out"")
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Horizontal")
+    
+<p>Use <code>.SetHorizontal()</code> to make the form labels appear next to the controls. This method optionally accepts a label width that specifies how many grid columns the labels in the form should take (by default this is 4). This will automatically make the necessary changes to markup for any form controls inside the form (including in partial views, etc).</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().SetHorizontal(6).Begin())
+            {
+                @form.Input("name", "Your Name")
+                @form.CheckBox("check", "Check me out")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var form = Html.Bootstrap(this).Form().SetHorizontal(6).Begin())
+            {
+                @form.Input(""name"", ""Your Name"")
+                @form.CheckBox(""check"", ""Check me out"")
+                @form.Submit()
+            }")
+    }
+}
+        
+<p>You can turn horizontal support off for specific form controls by explicitly specifying the form group (more on form groups below) and using <code>.SetHorizontal(false)</code>. You can further customize the column widths by explicitly specifying the form group, using <code>.SetAutoColumns(false)</code>, and then applying the same column extensions you use for grids such as <code>.SetMd()</code>, <code>.SetMdOffset()</code>, etc. to control labels and form controls.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().SetHorizontal(6).Begin())
+            {
+                using (form.FormGroup("Your Name").SetHorizontal(false).Begin())
+                {
+                    @form.Input("name")
+                }
+                using (form.FormGroup().SetAutoColumns(false).Begin())
+                {
+                    @form.ControlLabel("Your Email").SetMd(9)
+                    @form.Input("email").SetMd(3)
+                }
+                @form.CheckBox("check", "Check me out", "Some descriptive text")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().SetHorizontal(6).Begin())
+            {
+                using (form.FormGroup(""Your Name"").SetHorizontal(false).Begin())
+                {
+                    @form.Input(""name"")
+                }
+                using (form.FormGroup().SetAutoColumns(false).Begin())
+                {
+                    @form.ControlLabel(""Your Email"").SetMd(9)
+                    @form.Input(""email"").SetMd(3)
+                }
+                @form.CheckBox(""check"", ""Check me out"")
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Form Groups")
+    
+<p>Bootstrap provides styling to form controls by wrapping them and their labels in elements with the CSS class <code>form-group</code>. FluentBootstrap handles the creation of these <code>form-group</code> wrapper elements transparently so that you don't need to worry about them, but there may be times when you want a little more control (for example, to add additional content inside the form group for a given form control). You can explicitly create a form group with <code>.FormGroup()</code>. Doing so turns off the automatic form group creation for any form control contained within. You can also turn off form group creation by using <code>.EnsureFormGroup(false)</code> for any form control, which won't generate any wrapping element for that form control. As demonstrated above, use <code>.SetHorizontal()</code> to control whether an individual form group should be styled horizontally and <code>.SetAutoColumns()</code> to control whether a form group should automatically generate the appropriate grid column wrappers that are necessary for horizontal forms to look right (for example, turn off auto columns if you want to manually control the grid layout of a horizontal form).</p>
+
+@Html.Bootstrap(this).Heading2("Hidden Inputs")
+    
+<p>Create hidden inputs with <code>.Hidden()</code>. You can specify a name and value in the <code>.Hidden()</code> call or use <code>.SetName()</code> and <code>.SetValue()</code>.</p>
+
+@Html.Bootstrap(this).Heading2("Inputs")
+    
+<p>Use <code>.Input()</code> to create form inputs. This method optionally takes a name, label, value, and value format. It also accepts a <code>FormInputType</code> to specify the type of input control. If you specify a label or use <code>.SetControlLabel()</code> to set a label, a <code>label</code> HTML element will be automatically generated for the input and placed in the appropriate form group (with grid wrappers for horizontal forms if necessary). Use <code>.SetPlaceholder()</code> to set placeholder text for the input. Use <code>.SetReadonly()</code> to make the input readonly. Use <code>.SetFeedback()</code> to apply an icon to the input. Use <code>.SetValue()</code> to set the value for the input. <strong>Note that many of these extensions are also available for other form controls.</strong></p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input("name", "Your Name")
+                @form.Input("password", "Your Password", inputType: FormInputType.Password).SetPlaceholder("Enter your password")
+                @form.Input("readonly", "Readonly").SetValue("Some readonly content.").SetReadonly()
+                @form.Input("color", inputType: FormInputType.Color).SetControlLabel("Favorite Color")
+                @form.Input(inputType: FormInputType.DateTime).SetHelp("Note that on older browsers and IE certain form input types will just appear as text inputs.")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input(""name"", ""Your Name"")
+                @form.Input(""password"", ""Your Password"", inputType: FormInputType.Password).SetPlaceholder(""Enter your password"")
+                @form.Input(""readonly"", ""Readonly"").SetValue(""Some readonly content."").SetReadonly()
+                @form.Input(""color"", inputType: FormInputType.Color).SetControlLabel(""Favorite Color"")
+                @form.Input(inputType: FormInputType.DateTime).SetHelp(""Note that on older browsers and IE certain form input types will just appear as text inputs."")
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Text Areas")
+    
+<p>Create a text area with <code>.TextArea()</code>. Use <code>.SetRows()</code> to set the number of rows.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.TextArea("a", "Area A")
+                @form.TextArea("b", "Area B", rows: 5)
+                @form.TextArea("c", "Area C").SetRows(5).SetPlaceholder("Type your stuff here.")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.TextArea(""a"", ""Area A"")
+                @form.TextArea(""b"", ""Area B"", rows: 5)
+                @form.TextArea(""c"", ""Area C"").SetRows(5).SetPlaceholder(""Type your stuff here."")
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Checkboxes and Radios")
+    
+<p>Create checkboxes with <code>.CheckBox()</code> and radios with <code>.Radio()</code>. Use <code>.SetDescription()</code> to specify an extra description to appear next to the control (in addition to the label). Use <code>.SetChecked()</code> to specify if the control should be checked. Use <code>.SetInline()</code> to make the control inline.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Heading4("Normal Form")
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.CheckBox("a", "A", "Option A")
+                @form.CheckBox("b", null, "Option B")
+                @form.CheckBox("c", "C")
+                <hr />
+                @form.Radio("d", "D1", "Option D1")
+                @form.Radio("d", null, "Option D2")
+                @form.Radio("d", "D3")
+                <hr />
+                using(form.FormGroup().Begin())
+                {
+                    @form.CheckBox("a", "A", "Option A").SetInline()
+                    @form.CheckBox("b", null, "Option B").SetInline()
+                    @form.CheckBox("c", "C").SetInline()
+                }
+                <hr />
+                using (form.FormGroup().Begin())
+                {
+                    @form.Radio("e", "E1", "Option E1").SetInline()
+                    @form.Radio("e", null, "Option E2").SetInline()
+                    @form.Radio("e", "E3").SetInline()
+                }
+                <hr />
+                @form.Submit()
+            }
+            <hr />
+            @Html.Bootstrap(this).Heading4("Horizontal Form")
+            @using (var form = Html.Bootstrap(this).Form().SetHorizontal().Begin())
+            {
+                @form.Radio("d", "D1", "Option D1")
+                @form.Radio("d", null, "Option D2")
+                @form.Radio("d", "D3")
+                <hr />
+                using(form.FormGroup().Begin())
+                {
+                    @form.CheckBox("a", "A", "Option A").SetInline()
+                    @form.CheckBox("b", null, "Option B").SetInline()
+                    @form.CheckBox("c", "C").SetInline()
+                }
+                <hr />
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Heading4(""Normal Form"")
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.CheckBox(""a"", ""A"", ""Option A"")
+                @form.CheckBox(""b"", null, ""Option B"")
+                @form.CheckBox(""c"", ""C"")
+                <hr />
+                @form.Radio(""d"", ""D1"", ""Option D1"")
+                @form.Radio(""d"", null, ""Option D2"")
+                @form.Radio(""d"", ""D3"")
+                <hr />
+                using(form.FormGroup().Begin())
+                {
+                    @form.CheckBox(""a"", ""A"", ""Option A"").SetInline()
+                    @form.CheckBox(""b"", null, ""Option B"").SetInline()
+                    @form.CheckBox(""c"", ""C"").SetInline()
+                }
+                <hr />
+                using (form.FormGroup().Begin())
+                {
+                    @form.Radio(""e"", ""E1"", ""Option E1"").SetInline()
+                    @form.Radio(""e"", null, ""Option E2"").SetInline()
+                    @form.Radio(""e"", ""E3"").SetInline()
+                }
+                <hr />
+                @form.Submit()
+            }
+            <hr />
+            @Html.Bootstrap(this).Heading4(""Horizontal Form"")
+            @using (var form = Html.Bootstrap(this).Form().SetHorizontal().Begin())
+            {
+                @form.Radio(""d"", ""D1"", ""Option D1"")
+                @form.Radio(""d"", null, ""Option D2"")
+                @form.Radio(""d"", ""D3"")
+                <hr />
+                using(form.FormGroup().Begin())
+                {
+                    @form.CheckBox(""a"", ""A"", ""Option A"").SetInline()
+                    @form.CheckBox(""b"", null, ""Option B"").SetInline()
+                    @form.CheckBox(""c"", ""C"").SetInline()
+                }
+                <hr />
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Selects")
+
+<p>Create a select control with <code>.Select()</code>. You can set it to a multiple select with <code>.SetMultiple()</code>. You can add options in the <code>.Select()</code> call or by using <code>.AddOption()</code> or <code>.AddOptions()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Select("color", "Color", "Red", "Green", "Blue")
+                @form.Select("letter", "Letter").SetMultiple().AddOptions("a", "b", "c")
+                var select = form.Select("number", "Number");
+                for(int c = 1 ; c < 4 ; c++)
+                {
+                    select.AddOption(c);
+                }
+                @select
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Select(""color"", ""Color"", ""Red"", ""Green"", ""Blue"")
+                @form.Select(""letter"", ""Letter"").SetMultiple().AddOptions(""a"", ""b"", ""c"")
+                var select = form.Select(""number"", ""Number"");
+                for(int c = 1 ; c < 4 ; c++)
+                {
+                    select.AddOption(c);
+                }
+                @select
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Static Text")
+
+<p>Create static text within a form using <code>.Static()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().SetHorizontal().Begin())
+            {
+                @form.Static("Email", "email@example.com")
+                @form.Input("password", "Password")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().SetHorizontal().Begin())
+            {
+                @form.Static(""Email"", ""email@example.com"")
+                @form.Input(""password"", ""Password"")
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Form Buttons")
+    
+<p>To create a submit button use <code>.Submit()</code>. To create a reset button use <code>.Reset()</code>. You can override the text on both the submit and reset button by supplying it or by using <code>.SetText()</code>. You can also manually create a button with <code>.FormButton()</code> or <code>.InputButton()</code> depending on if you want a <code>button</code> or <code>input</code> HTML element.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().SetHorizontal().Begin())
+            {
+                @form.Input("name", "Name")
+                using(form.FormGroup().Begin())
+                {
+                    @form.Submit()
+                    @form.Reset("Clear Everything")
+                    @form.FormButton("Do Something Else")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().SetHorizontal().Begin())
+            {
+                @form.Input(""name"", ""Name"")
+                using(form.FormGroup().Begin())
+                {
+                    @form.Submit()
+                    @form.Reset(""Clear Everything"")
+                    @form.FormButton(""Do Something Else"")
+                }
+            }")
+    }
+}        
+        
+@Html.Bootstrap(this).Heading2("Validation States")
+    
+<p>To add validation styles to form controls, use <code>.SetState()</code> which takes a <code>ValidationState</code> that determines the style of the control.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input("success", "Input With Success").SetState(ValidationState.Success)
+                @form.Input("warning", "Input With Warning").SetState(ValidationState.Warning)
+                @form.Input("error", "Input With Error").SetState(ValidationState.Error)
+                @form.CheckBox("check", null, "Checkbox with warning").SetState(ValidationState.Warning)
+                @form.TextArea("textarea", "Textarea with error").SetState(ValidationState.Error)
+                @form.Select("select", "Select with success", "A", "B", "C").SetState(ValidationState.Success)
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input(""success"", ""Input With Success"").SetState(ValidationState.Success)
+                @form.Input(""warning"", ""Input With Warning"").SetState(ValidationState.Warning)
+                @form.Input(""error"", ""Input With Error"").SetState(ValidationState.Error)
+                @form.CheckBox(""check"", null, ""Checkbox with warning"").SetState(ValidationState.Warning)
+                @form.TextArea(""textarea"", ""Textarea with error"").SetState(ValidationState.Error)
+                @form.Select(""select"", ""Select with success"", ""A"", ""B"", ""C"").SetState(ValidationState.Success)
+                @form.Submit()
+            }")
+    }
+}
+        
+@Html.Bootstrap(this).Heading2("Control Sizing")
+    
+<p>You can change the size of form controls with <code>.SetSize()</code> which takes a <code>InputSize</code> enum.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input("large", "Large input").SetSize(InputSize.Lg)
+                @form.Input("small", "Small input").SetSize(InputSize.Sm)
+                @form.Select("large", "Large select", "A", "B", "C").SetSize(InputSize.Lg)
+                @form.Select("small", "Small select", "A", "B", "C").SetSize(InputSize.Sm)
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input(""large"", ""Large input"").SetSize(InputSize.Lg)
+                @form.Input(""small"", ""Small input"").SetSize(InputSize.Sm)
+                @form.Select(""large"", ""Large select"", ""A"", ""B"", ""C"").SetSize(InputSize.Lg)
+                @form.Select(""small"", ""Small select"", ""A"", ""B"", ""C"").SetSize(InputSize.Sm)
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Help Text")
+    
+<p>Use <code>.SetHelp()</code> to output help text for a form control.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input("name", "Name").SetHelp("Please enter your full first and last name.")
+                @form.Submit()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                @form.Input(""name"", ""Name"").SetHelp(""Please enter your full first and last name."")
+                @form.Submit()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Data Binding")
+
+<p>If you're using FluentBootstrap.Mvc then a lot of data binding and other MVC functionality is available.
+
+@Html.Bootstrap(this).Heading3("Validation Summaries")
+
+<p>ASP.NET MVC automatically generates a validation summary for forms when there are errors in the <code>ModelState</code>. FluentBootstrap automatically generates the appropriate form attributes to ensure correct association with the controller and formats the validation summary if one is available. You can hide the validation summary with <code>.HideValidationSummary()</code>. By default, FluentBootstrap places the validation summary at the end of the form. You can place it in an alternate location by using <code>.ValidationSummary()</code> which will render it where requested and not at the end of the form. When using <code>.ValidationSummary()</code> you can opt to include or exclude individual property errors with <code>.IncludePropertyErrors()</code>.</p>
+
+<p>Individual form controls can also contain validation data. FluentBootstrap handles individual validation errors, renders them next to the control for the model-bound property in question, and styles the control and validation text with the MVC validation CSS class (specifically, <code>HtmlHelper.ValidationInputCssClassName</code>).</p>
+
+<p>Note that the CSS classes applied to validation errors are normal MVC validation classes and not the Bootstrap <code>has-error</code> class. This is to ensure consistency across forms and to support other MVC components and plugins that look for these standard CSS classes (such as the MVC jQuery validation library). If you want the validation errors to match your Bootstrap appearance you should style the CSS classes <code>input-validation-error</code>, <code>field-validation-error</code>, and <code>validation-summary-errors</code>.</p>
+
+@Html.Bootstrap(this).Heading3("Editor and Display Templates")
+
+<p>You can render editor or display templates for any model property by using <code>.EditorFor()</code> and <code>.DisplayFor()</code>. The advantage of using the FluentBootstrap versions of these methods is that it renders the appropriate template via ASP.NET MVC and then adds additional wrapping elements, styling, etc. as needed to make the templates match the Bootstrap form styling.</p>
+
+<p>You can also render a sequence of editor or display templates by using <code>.DisplayListFor()</code> or <code>.EditorListFor()</code>. These work similar to <code>.EditorFor()</code> and <code>.DisplayFor()</code> except that they render an entire sequence of data.</p>
+
+<p>You can also output an editor or a display template for a given model property depending on a condition by using <code>.EditorOrDisplayFor()</code>. This is useful in cases such as checking if a user has specific permissions and then showing them an editor or just displaying the data depending on the result (instead of having to wrap everything in a condition).</p>

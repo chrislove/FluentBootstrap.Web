@@ -1,0 +1,246 @@
+﻿@using FluentBootstrap
+
+<p>Use <code>.List()</code> to create different styles of lists. This method takes an optional <code>ListType</code> enumeration that indicates the style of list to create. By default the list is unstyled if no <code>ListType</code> is supplied. You don't need to worry about <code>ul</code> vs. <code>ol</code> and which CSS styles to apply. Within the list use <code>.ListItem()</code> to create individual list items. This method takes an optional string that contains the content for the item. You can also nest lists just as you would in HTML.</p>
+
+@Html.Bootstrap(this).Heading2("Unordered")
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+            {
+                @list.ListItem("Lorem ipsum dolor sit amet")
+                @list.ListItem("Consectetur adipiscing elit")
+                @list.ListItem("Integer molestie lorem at massa")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+                {
+                    @innerList.ListItem("Phasellus iaculis neque")
+                    @innerList.ListItem("Vestibulum laoreet porttitor sem")
+                }
+                @list.ListItem("Aenean sit amet erat nunc")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+            {
+                @list.ListItem(""Lorem ipsum dolor sit amet"")
+                @list.ListItem(""Consectetur adipiscing elit"")
+                @list.ListItem(""Integer molestie lorem at massa"")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+                {
+                    @innerList.ListItem(""Phasellus iaculis neque"")
+                    @innerList.ListItem(""Vestibulum laoreet porttitor sem"")
+                }
+                @list.ListItem(""Aenean sit amet erat nunc"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Ordered")
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+            {
+                @list.ListItem("Lorem ipsum dolor sit amet")
+                @list.ListItem("Consectetur adipiscing elit")
+                @list.ListItem("Integer molestie lorem at massa")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+                {
+                    @innerList.ListItem("Phasellus iaculis neque")
+                    @innerList.ListItem("Vestibulum laoreet porttitor sem")
+                }
+                @list.ListItem("Aenean sit amet erat nunc")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+            {
+                @list.ListItem(""Lorem ipsum dolor sit amet"")
+                @list.ListItem(""Consectetur adipiscing elit"")
+                @list.ListItem(""Integer molestie lorem at massa"")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Ordered).Begin())
+                {
+                    @innerList.ListItem(""Phasellus iaculis neque"")
+                    @innerList.ListItem(""Vestibulum laoreet porttitor sem"")
+                }
+                @list.ListItem(""Aenean sit amet erat nunc"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Unstyled")
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).List(ListType.Unstyled).Begin())
+            {
+                @list.ListItem("Lorem ipsum dolor sit amet")
+                @list.ListItem("Consectetur adipiscing elit")
+                @list.ListItem("Integer molestie lorem at massa")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+                {
+                    @innerList.ListItem("Phasellus iaculis neque")
+                    @innerList.ListItem("Vestibulum laoreet porttitor sem")
+                }
+                @list.ListItem("Aenean sit amet erat nunc")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Unstyled).Begin())
+            {
+                @list.ListItem(""Lorem ipsum dolor sit amet"")
+                @list.ListItem(""Consectetur adipiscing elit"")
+                @list.ListItem(""Integer molestie lorem at massa"")
+                using (var innerList = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+                {
+                    @innerList.ListItem(""Phasellus iaculis neque"")
+                    @innerList.ListItem(""Vestibulum laoreet porttitor sem"")
+                }
+                @list.ListItem(""Aenean sit amet erat nunc"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Inline")
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).List(ListType.Inline).Begin())
+            {
+                @list.ListItem("Lorem ipsum")
+                @list.ListItem("Phasellus iaculis")
+                @list.ListItem("Nulla volutpat")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).List(ListType.Inline).Begin())
+            {
+                @list.ListItem(""Lorem ipsum dolor sit amet"")
+                @list.ListItem(""Phasellus iaculis"")
+                @list.ListItem(""Nulla volutpat"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Descriptions")
+    
+<p>To create a description list, use <code>.DescriptionList()</code>. Then alternate between terms and descriptions with <code>.DescriptionTerm()</code> and <code>.Description()</code>.</p>
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var list = Html.Bootstrap(this).DescriptionList().Begin())
+            {
+                @list.DescriptionTerm("Description lists")
+                @list.Description("A description list is perfect for defining terms.")
+                @list.DescriptionTerm("Euismod")
+                @list.Description("Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.")
+                @list.DescriptionTerm("Malesuada porta")
+                @list.Description("Etiam porta sem malesuada magna mollis euismod.")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).DescriptionList().Begin())
+            {
+                @list.DescriptionTerm(""Description lists"")
+                @list.Description(""A description list is perfect for defining terms."")
+                @list.DescriptionTerm(""Euismod"")
+                @list.Description(""Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus."")
+                @list.DescriptionTerm(""Malesuada porta"")
+                @list.Description(""Etiam porta sem malesuada magna mollis euismod."")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Horizontal Descriptions")
+    
+<p>You can also make description lists horizontal by using <code>.SetHorizontal()</code>.</p>
+    
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var list = Html.Bootstrap(this).DescriptionList().SetHorizontal().Begin())
+            {
+                @list.DescriptionTerm("Description lists")
+                @list.Description("A description list is perfect for defining terms.")
+                @list.DescriptionTerm("Euismod")
+                @list.Description("Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.")
+                @list.DescriptionTerm("Malesuada porta")
+                @list.Description("Etiam porta sem malesuada magna mollis euismod.")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var list = Html.Bootstrap(this).DescriptionList().SetHorizontal().Begin())
+            {
+                @list.DescriptionTerm(""Description lists"")
+                @list.Description(""A description list is perfect for defining terms."")
+                @list.DescriptionTerm(""Euismod"")
+                @list.Description(""Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus."")
+                @list.DescriptionTerm(""Malesuada porta"")
+                @list.Description(""Etiam porta sem malesuada magna mollis euismod."")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Data Binding")
+    
+<p>If you are using ASP.NET MVC you can easily generate a list from a model using the <code>.ListFor()</code> method. In addition to the <code>ListType</code>, this method takes a function to get a sequence of items from the model and a function to get content from each item in the sequence.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        using (var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+        {
+            @list.ListItem("One")
+            @list.ListItem("Two")
+            @list.ListItem("Three")
+        }
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"/*
+            Assume the following model:
+            {
+                PropA = ""A"",
+                PropB = 2,
+                PropC = new Dictionary<int, string>()
+                {
+                    { 1, ""One""},
+                    { 2, ""Two""},
+                    { 3, ""Three""}
+                }
+            }
+            */
+
+            @Html.Bootstrap().ListFor(x => x.PropC, x => x.Value, ListType.Unordered)")
+    }
+}
