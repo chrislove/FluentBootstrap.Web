@@ -18,10 +18,14 @@
     color: white;
 }
 
-#badges {
-    background-color: #193B59;
-    border-color: #333;
-    padding: 2px;
+.container .jumbotron {
+  background-image: none;
+  background-color: #eee;
+  color: #808080;
+}
+
+.container .jumbotron h1 {
+    color: #214F77;
 }
 
 .affix {

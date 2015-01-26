@@ -42,33 +42,15 @@
             @navbar.NavbarLink("Development", "/Development").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Development"))
             @navbar.NavbarLink("GitHub", "https://github.com/somedave/FluentBootstrap")
         }
-        @using (var jumbo = Html.Bootstrap(this).Jumbotron().Begin())
+        @using (Html.Bootstrap(this).Jumbotron().Begin())
         {
             using(Html.Bootstrap(this).Container().Begin())
             {
-                using(var grid = Html.Bootstrap(this).GridRow().Begin())
+                string heading = Page.Heading ?? Page.Title;
+                @Html.Bootstrap(this).Heading1(heading)
+                if(Page.Lead != null)
                 {
-                    using(grid.GridColumn(9).SetSm(12).Begin())
-                    {
-                        string heading = Page.Heading ?? Page.Title;
-                        @Html.Bootstrap(this).Heading1(heading)
-                        if(Page.Lead != null)
-                        {
-                            <p>@Html.Raw(Page.Lead)</p>
-                        }
-                    }
-                    using (grid.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
-                    {
-                        using (Html.Bootstrap(this).Panel().SetId("badges").Begin())
-                        {
-                            <div style="margin-bottom: 2px;"><a href="https://github.com/somedave/FluentBootstrap">@Html.Bootstrap(this).Image("https://img.shields.io/github/stars/somedave/FluentBootstrap.svg?style=flat&label=GitHub%20Stars")</a></div>
-                            <div style="margin-bottom: 2px;">@Html.Bootstrap(this).Image("https://img.shields.io/appveyor/ci/gruntjs/grunt.svg?style=flat&label=AppVeyor%20Build")</div>
-                            <div style="margin-bottom: 2px;"><a href="http://www.nuget.org/packages/FluentBootstrap/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.svg?style=flat&label=FluentBootstrap")</a></div>
-                            <div style="margin-bottom: 2px;"><a href="http://www.nuget.org/packages/FluentBootstrap.WebPages/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.WebPages.svg?style=flat&label=FluentBootstrap.WebPages")</a></div>
-                            <div style="margin-bottom: 2px;"><a href="http://www.nuget.org/packages/FluentBootstrap.Mvc/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.Mvc.svg?style=flat&label=FluentBootstrap.Mvc")</a></div>
-                            <div><a href="http://www.nuget.org/packages/FluentBootstrap.Mvc.T4MVC/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.Mvc.T4MVC.svg?style=flat&label=FluentBootstrap.Mvc.T4MVC")</a></div>
-                        }
-                    }
+                    <p>@Html.Raw(Page.Lead)</p>
                 }
             }
         }

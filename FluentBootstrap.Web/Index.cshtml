@@ -7,6 +7,82 @@
     Layout = "_Layout.cshtml";
 }
 
+@using (var jumbo = Html.Bootstrap(this).Jumbotron().Begin())
+{
+    using (var grid = Html.Bootstrap(this).GridRow().Begin())
+    {
+        using (grid.GridColumn(6).Begin())
+        {
+            @Html.Bootstrap(this).Heading1(Html.Bootstrap(this).Icon(Icon.Heart).ToString())
+            @Html.Bootstrap(this).Heading1("Free & Open Source Forever")
+        }
+        using (grid.GridColumn(6).Begin())
+        {
+            <p>Current and future versions will always be free and open source.</p>
+            <p>Developed in the open on GitHub.</p>
+            <p>Fork, contribute, discuss.</p>
+            <div style="margin-bottom: 2px;"><a href="https://github.com/somedave/FluentBootstrap">@Html.Bootstrap(this).Image("https://img.shields.io/github/stars/somedave/FluentBootstrap.svg?style=flat-square&label=GitHub%20Stars")</a></div>
+            <div style="margin-bottom: 2px;">@Html.Bootstrap(this).Image("https://img.shields.io/appveyor/ci/gruntjs/grunt.svg?style=flat-square&label=AppVeyor%20Build")</div>
+            <div style="margin-bottom: 2px;"><a href="http://www.nuget.org/packages/FluentBootstrap/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.svg?style=flat-square&label=FluentBootstrap")</a></div>
+            <div style="margin-bottom: 2px;"><a href="http://www.nuget.org/packages/FluentBootstrap.WebPages/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.WebPages.svg?style=flat-square&label=FluentBootstrap.WebPages")</a></div>
+            <div style="margin-bottom: 2px;"><a href="http://www.nuget.org/packages/FluentBootstrap.Mvc/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.Mvc.svg?style=flat-square&label=FluentBootstrap.Mvc")</a></div>
+            <div><a href="http://www.nuget.org/packages/FluentBootstrap.Mvc.T4MVC/">@Html.Bootstrap(this).Image("https://img.shields.io/nuget/v/FluentBootstrap.Mvc.T4MVC.svg?style=flat-square&label=FluentBootstrap.Mvc.T4MVC")</a></div>
+        }
+    }
+    
+    <hr />
+
+    using (var grid = Html.Bootstrap(this).GridRow().Begin())
+    {
+        using (grid.GridColumn(6).Begin())
+        {
+            @Html.Bootstrap(this).Heading1(Html.Bootstrap(this).Icon(Icon.Hdd).ToString())
+            @Html.Bootstrap(this).Heading1("Designed For The Server")
+        }
+        using (grid.GridColumn(6).Begin())
+        {
+            <p>Focus on your code and not complex markup.</p>
+            <p>Deep integration with ASP.NET MVC.</p>
+            <p>Model binding, routing support, automatic navigation generation*, and more.</p>
+            <small>* Coming soon :)</small>
+        }
+    }
+
+    <hr />
+
+    using (var grid = Html.Bootstrap(this).GridRow().Begin())
+    {
+        using (grid.GridColumn(6).Begin())
+        {
+            @Html.Bootstrap(this).Heading1(Html.Bootstrap(this).Icon(Icon.Ok).ToString())
+            @Html.Bootstrap(this).Heading1("Production Ready")
+        }
+        using (grid.GridColumn(6).Begin())
+        {
+            <p>Nearly 200 tests and counting.</p>
+            <p>In production use on large-scale applications.</p>
+            <p>Supports a variety of different frameworks.</p>
+        }
+    }
+
+    <hr />
+
+    using (var grid = Html.Bootstrap(this).GridRow().Begin())
+    {
+        using (grid.GridColumn(6).Begin())
+        {
+            @Html.Bootstrap(this).Heading1(Html.Bootstrap(this).Icon(Icon.Wrench).ToString())
+            @Html.Bootstrap(this).Heading1("Developer Friendly")
+        }
+        using (grid.GridColumn(6).Begin())
+        {
+            <p>Bring your own Bootstrap: CSS, LESS, Sass, it's up to you.</p>
+            <p>Well documented.</p>
+            <p>Easily extensible.</p>
+        }
+    }
+}
+
 @Html.Bootstrap(this).PageHeader("What Is FluentBootstrap?")
 <p>The @Html.Bootstrap(this).Link("Bootstrap CSS framework", "http://getbootstrap.com") is great. It provides a whole lot of useful components that can be leveraged on any web page. However, as with any complex CSS framework it requires you to specify particular CSS classes on specific HTML elements. FluentBootstrap abstracts most of this detail behind code so that you can think about what you want to present rather than how to present it.</p>
 
