@@ -1,0 +1,29 @@
+﻿@using FluentBootstrap
+
+<p>Create a pager with <code>.Pager()</code>. Add pagers to it with <code>.Page()</code>. Use <code>.SetActive()</code> to indicate the active page and <code>.SetDisabled()</code> to indicate a disabled page. Similar to paginations, you can also create a pager using fluent methods.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var pager = Html.Bootstrap(this).Pager().Begin())
+            {
+                @pager.Page("Older", "http://google.com")
+                @pager.Page("Archive").SetDisabled()
+                @pager.Page("Newer")
+            }
+            @Html.Bootstrap(this).Pager().AddPrevious("Oldest").AddPrevious("Old", disabled: true).AddPage("Archive").AddNext("Newer")
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var pager = Html.Bootstrap(this).Pager().Begin())
+            {
+                @pager.Page(""Older"", ""http://google.com"")
+                @pager.Page(""Archive"").SetDisabled()
+                @pager.Page(""Newer"")
+            }
+            @Html.Bootstrap(this).Pager().AddPrevious(""Oldest"").AddPrevious(""Old"", disabled: true).AddPage(""Archive"").AddNext(""Newer"")")
+    }
+}

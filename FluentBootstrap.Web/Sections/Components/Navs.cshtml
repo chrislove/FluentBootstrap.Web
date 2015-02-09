@@ -1,0 +1,229 @@
+﻿@using FluentBootstrap
+
+@Html.Bootstrap(this).Heading2("Tabs")
+
+<p>Create tabbed navigation with <code>.Tabs()</code>. Set the active tab with <code>.SetActive()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var tabs = Html.Bootstrap(this).Tabs().Begin())
+            {
+                @tabs.Tab("Home").SetActive()
+                @tabs.Tab("Profile", "http://www.google.com")
+                @tabs.Tab("Messages")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"using(var tabs = Html.Bootstrap(this).Tabs().Begin())
+        {
+            @tabs.Tab(""Home"").SetActive()
+            @tabs.Tab(""Profile"", ""http://www.google.com"")
+            @tabs.Tab(""Messages"")
+        }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Pills")
+
+<p>Create pill navigation with <code>.Pills()</code>. Set the active pill with <code>.SetActive()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var pills = Html.Bootstrap(this).Pills().Begin())
+            {
+                @pills.Pill("Home").SetActive()
+                @pills.Pill("Profile", "http://www.google.com")
+                @pills.Pill("Messages")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var pills = Html.Bootstrap(this).Pills().Begin())
+            {
+                @pills.Pill(""Home"").SetActive()
+                @pills.Pill(""Profile"", ""http://www.google.com"")
+                @pills.Pill(""Messages"")
+            }")
+    }
+}
+
+<p>You can also orient pill navigation vertically with <code>.SetStacked()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+            {
+                @pills.Pill("Home").SetActive()
+                @pills.Pill("Profile", "http://www.google.com")
+                @pills.Pill("Messages")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+            {
+                @pills.Pill(""Home"").SetActive()
+                @pills.Pill(""Profile"", ""http://www.google.com"")
+                @pills.Pill(""Messages"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Justified")
+
+<p>You can justify tabs or pills with <code>.SetJustified()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var tabs = Html.Bootstrap(this).Tabs().SetJustified().Begin())
+            {
+                @tabs.Tab("Home").SetActive()
+                @tabs.Tab("Profile", "http://www.google.com")
+                @tabs.Tab("Messages")
+            }
+            <br />
+            @using (var pills = Html.Bootstrap(this).Pills().SetJustified().Begin())
+            {
+                @pills.Pill("Home").SetActive()
+                @pills.Pill("Profile", "http://www.google.com")
+                @pills.Pill("Messages")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var tabs = Html.Bootstrap(this).Tabs().SetJustified().Begin())
+            {
+                @tabs.Tab(""Home"").SetActive()
+                @tabs.Tab(""Profile"", ""http://www.google.com"")
+                @tabs.Tab(""Messages"")
+            }
+            <br />
+            @using (var pills = Html.Bootstrap(this).Pills().SetJustified().Begin())
+            {
+                @pills.Pill(""Home"").SetActive()
+                @pills.Pill(""Profile"", ""http://www.google.com"")
+                @pills.Pill(""Messages"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Disabled")
+
+<p>Make any nav item disabled with <code>.SetDisabled()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var tabs = Html.Bootstrap(this).Tabs().Begin())
+            {
+                @tabs.Tab("Home").SetActive()
+                @tabs.Tab("Profile", "http://www.google.com")
+                @tabs.Tab("Messages").SetDisabled()
+            }
+            <br />
+            @using (var pills = Html.Bootstrap(this).Pills().Begin())
+            {
+                @pills.Pill("Home").SetActive()
+                @pills.Pill("Profile", "http://www.google.com")
+                @pills.Pill("Messages").SetDisabled()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var tabs = Html.Bootstrap(this).Tabs().Begin())
+            {
+                @tabs.Tab(""Home"").SetActive()
+                @tabs.Tab(""Profile"", ""http://www.google.com"")
+                @tabs.Tab(""Messages"").SetDisabled()
+            }
+            <br />
+            @using (var pills = Html.Bootstrap(this).Pills().Begin())
+            {
+                @pills.Pill(""Home"").SetActive()
+                @pills.Pill(""Profile"", ""http://www.google.com"")
+                @pills.Pill(""Messages"").SetDisabled()
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Dropdowns")
+
+<p>Add dropdowns to any nav with <code>.Dropdown()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var tabs = Html.Bootstrap(this).Tabs().Begin())
+            {
+                @tabs.Tab("Home").SetActive()
+                @tabs.Tab("Profile", "http://www.google.com")
+                using (var dropdown = tabs.Dropdown("Dropdown").Begin())
+                {
+                    @dropdown.DropdownLink("Item 1")
+                    @dropdown.DropdownDivider()
+                    @dropdown.DropdownLink("Item 2")
+                }
+            }
+            <br />
+            @using (var pills = Html.Bootstrap(this).Pills().Begin())
+            {
+                @pills.Pill("Home").SetActive()
+                @pills.Pill("Profile", "http://www.google.com")
+                using (var dropdown = pills.Dropdown("Dropdown").Begin())
+                {
+                    @dropdown.DropdownLink("Item 1")
+                    @dropdown.DropdownDivider()
+                    @dropdown.DropdownLink("Item 2")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var tabs = Html.Bootstrap(this).Tabs().Begin())
+            {
+                @tabs.Tab(""Home"").SetActive()
+                @tabs.Tab(""Profile"", ""http://www.google.com"")
+                using (var dropdown = tabs.Dropdown(""Dropdown"").Begin())
+                {
+                    @dropdown.DropdownLink(""Item 1"")
+                    @dropdown.DropdownDivider()
+                    @dropdown.DropdownLink(""Item 2"")
+                }
+            }
+            <br />
+            @using (var pills = Html.Bootstrap(this).Pills().Begin())
+            {
+                @pills.Pill(""Home"").SetActive()
+                @pills.Pill(""Profile"", ""http://www.google.com"")
+                using (var dropdown = pills.Dropdown(""Dropdown"").Begin())
+                {
+                    @dropdown.DropdownLink(""Item 1"")
+                    @dropdown.DropdownDivider()
+                    @dropdown.DropdownLink(""Item 2"")
+                }
+            }")
+    }
+}

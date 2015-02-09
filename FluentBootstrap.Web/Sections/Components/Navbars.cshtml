@@ -1,0 +1,137 @@
+﻿@using FluentBootstrap
+
+<p>Create a simple navbar with <code>.Navbar()</code>. You can control whether the navbar is fluid (takes up the entire screen) with <code>.SetFluid()</code>. You can use <code>.SetPosition()</code> to determine the position of the navbar relative to the rest of the page. Use <code>.SetInverse()</code> to use an inverted color scheme for the navbar.</p>
+
+<p>By default the navbar creates a brand section (with optionally specified link or the root of the site) and a mobile-ready navigation toggle for you. You can add links with <code>.NavbarLink()</code>, dropdowns with <code>.Dropdown()</code>, and inline forms with <code>.NavbarForm()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var navbar = Html.Bootstrap(this).Navbar("MyApp").Begin())
+            {
+                @navbar.NavbarLink("A")
+                @navbar.NavbarLink("B")
+                using(var dropdown = navbar.Dropdown("Dropdown").Begin())
+                {
+                    @dropdown.DropdownLink("A")
+                    @dropdown.DropdownLink("B")   
+                }
+                using(var form = navbar.NavbarForm().Begin())
+                {
+                    @form.Input("search").SetPlaceholder("Search")
+                    @form.Submit()
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var navbar = Html.Bootstrap(this).Navbar(""MyApp"").Begin())
+            {
+                @navbar.NavbarLink(""A"")
+                @navbar.NavbarLink(""B"")
+                using(var dropdown = navbar.Dropdown(""Dropdown"").Begin())
+                {
+                    @dropdown.DropdownLink(""A"")
+                    @dropdown.DropdownLink(""B"")   
+                }
+                using(var form = navbar.NavbarForm().Begin())
+                {
+                    @form.Input(""search"").SetPlaceholder(""Search"")
+                    @form.Submit()
+                }
+            }")
+    }
+}
+
+<p>If you need more control, you can specify the entire layout of the navbar including the brand and mobile navigation toggle (or lack thereof).</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var navbar = Html.Bootstrap(this).Navbar().SetId("nav6").Begin())
+            {
+                using (var navbarHeader = navbar.NavbarHeader().Begin())
+                {
+                    @navbarHeader.Brand("MyApp")
+                    @navbarHeader.NavbarToggle()
+                }
+                using (var navbarCollapse = navbar.NavbarCollapse().Begin())
+                {
+                    using (var nav = navbarCollapse.NavbarNav().Begin())
+                    {
+                        @nav.NavbarLink("A")
+                        using (var dropdown = nav.Dropdown("B").Begin())
+                        {
+                            @dropdown.DropdownLink("C")
+                            @dropdown.DropdownLink("D")
+                        }
+                    }
+                    using (var form = navbarCollapse.NavbarForm().Begin())
+                    {
+                        @form.Input("Search").SetPlaceholder("Search")
+                        @form.Submit("Submit")
+                    }
+                    using (var nav = navbarCollapse.NavbarNav().Begin())
+                    {
+                        @nav.NavbarLink("B")
+                    }
+                    @navbarCollapse.NavbarButton("Warn").SetState(ButtonState.Warning)
+                    using (navbarCollapse.NavbarText().SetRight().Begin())
+                    {
+                        <text>Logged in as @Html.Bootstrap(this).Link("Dave")</text>
+                    }
+                    using (var nav = navbarCollapse.NavbarNav().SetRight().Begin())
+                    {
+                        @nav.NavbarLink("R")
+                    }
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var navbar = Html.Bootstrap(this).Navbar().SetId(""nav6"").Begin())
+            {
+                using (var navbarHeader = navbar.NavbarHeader().Begin())
+                {
+                    @navbarHeader.Brand(""MyApp"")
+                    @navbarHeader.NavbarToggle()
+                }
+                using (var navbarCollapse = navbar.NavbarCollapse().Begin())
+                {
+                    using (var nav = navbarCollapse.NavbarNav().Begin())
+                    {
+                        @nav.NavbarLink(""A"")
+                        using (var dropdown = nav.Dropdown(""B"").Begin())
+                        {
+                            @dropdown.DropdownLink(""C"")
+                            @dropdown.DropdownLink(""D"")
+                        }
+                    }
+                    using (var form = navbarCollapse.NavbarForm().Begin())
+                    {
+                        @form.Input(""Search"").SetPlaceholder(""Search"")
+                        @form.Submit(""Submit"")
+                    }
+                    using (var nav = navbarCollapse.NavbarNav().Begin())
+                    {
+                        @nav.NavbarLink(""B"")
+                    }
+                    @navbarCollapse.NavbarButton(""Warn"").SetState(ButtonState.Warning)
+                    using (navbarCollapse.NavbarText().SetRight().Begin())
+                    {
+                        <text>Logged in as @Html.Bootstrap(this).Link(""Dave"")</text>
+                    }
+                    using (var nav = navbarCollapse.NavbarNav().SetRight().Begin())
+                    {
+                        @nav.NavbarLink(""R"")
+                    }
+                }
+            }")
+    }
+}

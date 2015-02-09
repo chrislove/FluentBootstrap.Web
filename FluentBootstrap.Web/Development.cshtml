@@ -5,10 +5,21 @@
     Layout = "_Layout.cshtml";
 }
 
-<p>FluentBootstrap is a complex library with <em>a lot</em> of generics. It's certainly not the cleanest code, but it gets the job done. In the near future, some guidelines for developing external extensions as well as for developing inside FluentBootstrap will be provided here.</p>
+<p>FluentBootstrap is a complex library with <em>a lot</em> of generics, which are necessary to ensure that it can adapt to different environments (such as ASP.NET MVC and ASP.NET WebPages) while maintaining model information. In the near future, some guidelines for developing external extensions as well as for developing inside FluentBootstrap will be provided here.</p>
 
 @Html.Bootstrap(this).PageHeader("Release Notes").SetId("release-notes")
 
+
+<p>
+    <strong>3.3.1.5</strong>
+    @using (var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+    {
+        @list.ListItem("Added <code>.SetPullLeft()</code>, <code>.SetPullRight()</code>, and <code>.SetCenterBlock()</code> for general component positioning.")
+        @list.ListItem("Renamed <code>DropdownButton</code> to <code>ButtonDropdown</code> to better match Bootstrap documentation.")
+        @list.ListItem("Also refactored (the newly renamed) <code>ButtonDropdown</code> so that the outer button group is implied and no longer needs to be specified.")
+        @list.ListItem("New <code>.InputFor()</code>, <code>.CheckBoxFor()</code>, <code>.RadioFor()</code>, and <code>.SelectFor()</code> extensions when using ASP.NET MVC.")
+    }
+</p>
 <p>
     <strong>3.3.1.4</strong>
     @using (var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())

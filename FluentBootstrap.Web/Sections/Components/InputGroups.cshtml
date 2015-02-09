@@ -1,0 +1,337 @@
+﻿@using FluentBootstrap
+
+<p>Input groups allow you to add text or buttons before or after any form input. You can create input groups by wrapping your form controls with <code>.InputGroup()</code>. Then, use <code>.InputGroupAddon()</code> to add text to the left or right of the input control.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupAddon("@")
+                    @inputGroup.Input().SetPlaceholder("Username")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon(".00")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupAddon("$")
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon(".00")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupAddon(""@"")
+                    @inputGroup.Input().SetPlaceholder(""Username"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon("".00"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupAddon(""$"")
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon("".00"")
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Input Group Sizing")
+
+<p>You can change the size of the input group with <code>.SetSize()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().SetSize(InputGroupSize.Lg).Begin())
+                {
+                    @inputGroup.InputGroupAddon("@")
+                    @inputGroup.Input().SetPlaceholder("Username")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().SetSize(InputGroupSize.Sm).Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon(".00")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().SetSize(InputGroupSize.Lg).Begin())
+                {
+                    @inputGroup.InputGroupAddon(""@"")
+                    @inputGroup.Input().SetPlaceholder(""Username"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().SetSize(InputGroupSize.Sm).Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon("".00"")
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Checkboxes and Radios")
+
+<p>Add checkboxes and radios to your input groups by adding <code>.CheckBox()</code> and <code>.Radio()</code> as children of <code>.InputGroupAddon()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupAddon().AddChild(x => x.CheckBox())
+                    @inputGroup.Input().SetPlaceholder("Username")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon().AddChild(x => x.Radio())
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupAddon().AddChild(x => x.CheckBox())
+                    @inputGroup.Input().SetPlaceholder(""Username"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupAddon().AddChild(x => x.Radio())
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Buttons")
+
+<p>Add buttons to your input groups by adding <code>.Button()</code> as a child of <code>.InputGroupButton()</code> (as opposed to of <code>.InputGroupAddon()</code>).</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupButton().AddChild(x => x.Button("Action"))
+                    @inputGroup.Input().SetPlaceholder("Username")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupButton().AddChild(x => x.Button("Action")).AddChild(x => x.Button("Another"))
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.InputGroupButton().AddChild(x => x.Button(""Action""))
+                    @inputGroup.Input().SetPlaceholder(""Username"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    @inputGroup.InputGroupButton().AddChild(x => x.Button(""Action"")).AddChild(x => x.Button(""Another""))
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Dropdowns")
+
+<p>Add dropdowns to your input groups by adding <code>.Dropdown()</code> as a child of <code>.InputGroupButton()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        using (var dropdown = button.Dropdown("Dropdown").Begin())
+                        {
+                            @dropdown.DropdownLink("A")
+                            @dropdown.DropdownLink("B")
+                        }
+                    }
+                    @inputGroup.Input().SetPlaceholder("Username")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        using (var dropdown = button.Dropdown("Dropdown").Begin())
+                        {
+                            @dropdown.DropdownLink("A")
+                            @dropdown.DropdownLink("B")
+                        }
+                    }
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        using (var dropdown = button.Dropdown(""Dropdown"").Begin())
+                        {
+                            @dropdown.DropdownLink(""A"")
+                            @dropdown.DropdownLink(""B"")
+                        }
+                    }
+                    @inputGroup.Input().SetPlaceholder(""Username"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        using (var dropdown = button.Dropdown(""Dropdown"").Begin())
+                        {
+                            @dropdown.DropdownLink(""A"")
+                            @dropdown.DropdownLink(""B"")
+                        }
+                    }
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Split Dropdowns")
+
+<p>Add split dropdowns to your input groups by adding seperate <code>.Button()</code> and <code>.Dropdown()</code> elements as children of <code>.InputGroupButton()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        @button.Button("Action")
+                        using (var dropdown = button.Dropdown().Begin())
+                        {
+                            @dropdown.DropdownLink("A")
+                            @dropdown.DropdownLink("B")
+                        }
+                    }
+                    @inputGroup.Input().SetPlaceholder("Username")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        @button.Button("Action")
+                        using (var dropdown = button.Dropdown().Begin())
+                        {
+                            @dropdown.DropdownLink("A")
+                            @dropdown.DropdownLink("B")
+                        }
+                    }
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var form = Html.Bootstrap(this).Form().Begin())
+            {
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        @button.Button(""Action"")
+                        using (var dropdown = button.Dropdown().Begin())
+                        {
+                            @dropdown.DropdownLink(""A"")
+                            @dropdown.DropdownLink(""B"")
+                        }
+                    }
+                    @inputGroup.Input().SetPlaceholder(""Username"")
+                }
+                <br />
+                using (var inputGroup = form.InputGroup().Begin())
+                {
+                    @inputGroup.Input()
+                    using (var button = inputGroup.InputGroupButton().Begin())
+                    {
+                        @button.Button(""Action"")
+                        using (var dropdown = button.Dropdown().Begin())
+                        {
+                            @dropdown.DropdownLink(""A"")
+                            @dropdown.DropdownLink(""B"")
+                        }
+                    }
+                }
+            }")
+    }
+}

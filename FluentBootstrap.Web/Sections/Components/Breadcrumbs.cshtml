@@ -1,0 +1,27 @@
+﻿@using FluentBootstrap
+
+<p>Create a breadcrumb with <code>.Breadcrumb()</code>. Add crumbs to it with <code>.Crumb()</code>. Set the active crumb with <code>.SetActive()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var breadcrumb = Html.Bootstrap(this).Breadcrumb().Begin())
+            {
+                @breadcrumb.Crumb("First")
+                @breadcrumb.Crumb("Second")
+                @breadcrumb.Crumb("Third").SetActive()
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var breadcrumb = Html.Bootstrap(this).Breadcrumb().Begin())
+            {
+                @breadcrumb.Crumb(""First"")
+                @breadcrumb.Crumb(""Second"")
+                @breadcrumb.Crumb(""Third"").SetActive()
+            }")
+    }
+}

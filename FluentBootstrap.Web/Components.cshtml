@@ -4,3 +4,72 @@
     Page.Title = "Components";
     Layout = "_Layout.cshtml";
 }
+
+@using (var outerRow = Html.Bootstrap(this).GridRow().Begin())
+{
+    using (outerRow.GridColumn(9).SetSm(12).Begin())
+    {
+        using(Html.Bootstrap(this).Lead().Begin())
+        {
+            <text>This section explains components that are provided by the Bootstrap framework. FluentBootstrap implements all components from Bootstrap. For more information @Html.Bootstrap(this).Link("see the Bootstrap documentation", "http://getbootstrap.com/components/").</text>
+        }
+    
+        @Html.Bootstrap(this).PageHeader("Icons").SetId("icons")
+        @RenderPage("/Sections/Components/Icons.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Dropdowns").SetId("dropdowns")
+        @RenderPage("/Sections/Components/Dropdowns.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Button Groups").SetId("button-groups")
+        @RenderPage("/Sections/Components/ButtonGroups.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Button Dropdowns").SetId("button-dropdowns")
+        @RenderPage("/Sections/Components/ButtonDropdowns.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Input Groups").SetId("input-groups")
+        @RenderPage("/Sections/Components/InputGroups.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Navs").SetId("navs")
+        @RenderPage("/Sections/Components/Navs.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Navbars").SetId("navbars")
+        @RenderPage("/Sections/Components/Navbars.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Breadcrumbs").SetId("breadcrumbs")
+        @RenderPage("/Sections/Components/Breadcrumbs.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Pagination").SetId("pagination")
+        @RenderPage("/Sections/Components/Pagination.cshtml")
+
+        @Html.Bootstrap(this).PageHeader("Pagers").SetId("pagers")
+        @RenderPage("/Sections/Components/Pagers.cshtml")
+
+        <hr />
+        
+        <p>Documentation for additional Bootstrap components is coming soon.</p>
+    }
+    using (outerRow.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
+    {
+        <div id="sidebar">
+            <div id="sidebar-nav">
+                @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+                {
+                    @pills.Pill("Icons", "#icons")
+                    @pills.Pill("Dropdowns", "#dropdowns")
+                    @pills.Pill("Button Groups", "#button-groups")
+                    @pills.Pill("Button Dropdowns", "#button-dropdowns")
+                    @pills.Pill("Input Groups", "#input-groups")
+                    @pills.Pill("Navs", "#navs")
+                    @pills.Pill("Navbars", "#navbars")
+                    @pills.Pill("Breadcrumbs", "#breadcrumbs")
+                    @pills.Pill("Pagination", "#pagination")
+                    @pills.Pill("Pagers", "#pagers")
+                }
+            </div>
+            @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+            {
+                @pills.Pill("Back to top", "#top").MakeSmall()
+            }
+        </div>
+    }
+}

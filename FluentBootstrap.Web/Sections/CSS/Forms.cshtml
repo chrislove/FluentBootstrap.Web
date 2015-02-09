@@ -318,7 +318,7 @@
                 var select = form.Select("number", "Number");
                 for(int c = 1 ; c < 4 ; c++)
                 {
-                    select.AddOption(c);
+                    select.AddOption(c.ToString());
                 }
                 @select
                 @form.Submit()
@@ -334,7 +334,7 @@
                 var select = form.Select(""number"", ""Number"");
                 for(int c = 1 ; c < 4 ; c++)
                 {
-                    select.AddOption(c);
+                    select.AddOption(c.ToString());
                 }
                 @select
                 @form.Submit()

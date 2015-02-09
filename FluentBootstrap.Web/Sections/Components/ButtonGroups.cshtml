@@ -1,0 +1,258 @@
+﻿@using FluentBootstrap
+
+<p>Create a button group with <code>.ButtonGroup()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var group = Html.Bootstrap(this).ButtonGroup().Begin())
+            {
+                @group.Button("Left")
+                @group.Button("Middle")
+                @group.LinkButton("Right", "http://www.getbootstrap.com")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@group.Button(""Left"")
+                @group.Button(""Middle"")
+                @group.LinkButton(""Right"", ""http://www.getbootstrap.com"")")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Button Toolbars")
+
+<p>You can create button toolbars, which are a container for button groups, with <code>.ButtonToolbar()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var toolbar = Html.Bootstrap(this).ButtonToolbar().Begin())
+            {
+                using(var group = toolbar.ButtonGroup().Begin())
+                {
+                    @group.Button("1")
+                    @group.Button("2")
+                    @group.Button("3")
+                }
+                using (var group = toolbar.ButtonGroup().Begin())
+                {
+                    @group.LinkButton("4", "http://www.getbootstrap.com")
+                }
+                using (var group = toolbar.ButtonGroup().Begin())
+                {
+                    @group.Button("5")
+                    @group.Button("6")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var toolbar = Html.Bootstrap(this).ButtonToolbar().Begin())
+            {
+                using(var group = toolbar.ButtonGroup().Begin())
+                {
+                    @group.Button(""1"")
+                    @group.Button(""2"")
+                    @group.Button(""3"")
+                }
+                using (var group = toolbar.ButtonGroup().Begin())
+                {
+                    @group.LinkButton(""4"", ""http://www.getbootstrap.com"")
+                }
+                using (var group = toolbar.ButtonGroup().Begin())
+                {
+                    @group.Button(""5"")
+                    @group.Button(""6"")
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Sizing")
+
+<p>Size all of the buttons in a group with <code>.SetSize()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetSize(ButtonGroupSize.Lg).Begin())
+            {
+                    @group.LinkButton("L")
+                    @group.Button("A")
+                    @group.Button("B").SetIcon(Icon.Pencil)
+            }
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetSize(ButtonGroupSize.Sm).Begin())
+            {
+                @group.Button("C")
+                @group.LinkButton("L").SetIcon(Icon.Phone)
+                @group.Button("D")
+            }
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetSize(ButtonGroupSize.Xs).Begin())
+            {
+                @group.Button("E").SetIcon(Icon.Tags)
+                @group.Button("F")
+                @group.LinkButton("L")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var group = Html.Bootstrap(this).ButtonGroup().SetSize(ButtonGroupSize.Lg).Begin())
+            {
+                    @group.LinkButton(""L"")
+                    @group.Button(""A"")
+                    @group.Button(""B"").SetIcon(Icon.Pencil)
+            }
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetSize(ButtonGroupSize.Sm).Begin())
+            {
+                @group.Button(""C"")
+                @group.LinkButton(""L"").SetIcon(Icon.Phone)
+                @group.Button(""D"")
+            }
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetSize(ButtonGroupSize.Xs).Begin())
+            {
+                @group.Button(""E"").SetIcon(Icon.Tags)
+                @group.Button(""F"")
+                @group.LinkButton(""L"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Group Dropdowns")
+
+<p>You can create dropdowns inside of a button group with <code>.Dropdown()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var group = Html.Bootstrap(this).ButtonGroup().Begin())
+            {
+                @group.Button("A")
+                @group.LinkButton("L")
+                using (var dropdown = group.Dropdown("Dropdown").Begin())
+                {
+                    @dropdown.DropdownLink("B")
+                    @dropdown.DropdownLink("C")
+                }
+                using (var dropdown = group.Dropdown("Styled").SetState(ButtonState.Danger).Begin())
+                {
+                    @dropdown.DropdownLink("D")
+                    @dropdown.DropdownLink("E")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var group = Html.Bootstrap(this).ButtonGroup().Begin())
+            {
+                @group.Button(""A"")
+                @group.LinkButton(""L"")
+                using (var dropdown = group.Dropdown(""Dropdown"").Begin())
+                {
+                    @dropdown.DropdownLink(""B"")
+                    @dropdown.DropdownLink(""C"")
+                }
+                using (var dropdown = group.Dropdown(""Styled"").SetState(ButtonState.Danger).Begin())
+                {
+                    @dropdown.DropdownLink(""D"")
+                    @dropdown.DropdownLink(""E"")
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Vertical Button Groups")
+
+<p>You can make your button group vertical by using <code>.SetVertical()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetVertical().Begin())
+            {
+                @group.Button("A")
+                @group.LinkButton("L")
+                using (var dropdown = group.Dropdown("Dropdown").Begin())
+                {
+                    @dropdown.DropdownLink("B")
+                    @dropdown.DropdownLink("C")
+                }
+                using (var dropdown = group.Dropdown("Styled").SetState(ButtonState.Danger).Begin())
+                {
+                    @dropdown.DropdownLink("D")
+                    @dropdown.DropdownLink("E")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var group = Html.Bootstrap(this).ButtonGroup().SetVertical().Begin())
+            {
+                @group.Button(""A"")
+                @group.LinkButton(""L"")
+                using (var dropdown = group.Dropdown(""Dropdown"").Begin())
+                {
+                    @dropdown.DropdownLink(""B"")
+                    @dropdown.DropdownLink(""C"")
+                }
+                using (var dropdown = group.Dropdown(""Styled"").SetState(ButtonState.Danger).Begin())
+                {
+                    @dropdown.DropdownLink(""D"")
+                    @dropdown.DropdownLink(""E"")
+                }
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Justified Button Groups")
+
+<p>You can make a button group span the entire width of it's parent by using <code>.SetJustified()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var group = Html.Bootstrap(this).ButtonGroup().SetJustified().Begin())
+            {
+                @group.LinkButton("A")
+                @group.Button("B")
+                @group.LinkButton("Long Link Text")
+                using (var dropdown = group.Dropdown("Dropdown").Begin())
+                {
+                    @dropdown.DropdownLink("C")
+                    @dropdown.DropdownLink("D")
+                }
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var group = Html.Bootstrap(this).ButtonGroup().SetJustified().Begin())
+            {
+                @group.LinkButton(""A"")
+                @group.Button(""B"")
+                @group.LinkButton(""Long Link Text"")
+                using (var dropdown = group.Dropdown(""Dropdown"").Begin())
+                {
+                    @dropdown.DropdownLink(""C"")
+                    @dropdown.DropdownLink(""D"")
+                }
+            }")
+    }
+}

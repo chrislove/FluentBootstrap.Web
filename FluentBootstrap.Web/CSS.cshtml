@@ -22,7 +22,10 @@
 {
     using (outerRow.GridColumn(9).SetSm(12).Begin())
     {
-        <p>This section explains functionality related to existing standard HTML elements like tables and forms but with additional styling and capabilities. FluentBootstrap implements all CSS support from Bootstrap. For more information @Html.Bootstrap(this).Link("see the Bootstrap documentation", "http://getbootstrap.com/css/").</p>
+        using(Html.Bootstrap(this).Lead().Begin())
+        {
+            <text>This section explains functionality related to existing standard HTML elements like tables and forms but with additional styling and capabilities. FluentBootstrap implements all CSS support from Bootstrap. For more information @Html.Bootstrap(this).Link("see the Bootstrap documentation", "http://getbootstrap.com/css/").</text>
+        }
 
         @Html.Bootstrap(this).PageHeader("Grids").SetId("grids")
         @RenderPage("/Sections/CSS/Grids.cshtml")    
@@ -45,47 +48,30 @@
         @Html.Bootstrap(this).PageHeader("Images").SetId("images")
         @RenderPage("/Sections/CSS/Images.cshtml")
 
-        <br />
-        <br />
-        <hr />
-    
-        @Html.Bootstrap(this).Alert(AlertState.Warning, "Note that this page focuses on the most common use cases and does not document the full feature set of FluentBootstrap. Generally anything that you can do in Bootstrap can be done in FluentBootstrap. Additional documentation and examples will continue to be added as time allows.")
+        @Html.Bootstrap(this).PageHeader("Miscellaneous").SetId("miscellaneous")
+        @RenderPage("/Sections/CSS/Miscellaneous.cshtml")
     }
     using (outerRow.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
     {
         <div id="sidebar">
+            <div id="sidebar-nav">
+                @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+                {
+                    @pills.Pill("Grids", "#grids")
+                    @pills.Pill("Typography", "#typography")
+                    @pills.Pill("Lists", "#lists")
+                    @pills.Pill("Tables", "#tables")
+                    @pills.Pill("Forms", "#forms")
+                    @pills.Pill("Buttons", "#buttons")
+                    @pills.Pill("Images", "#images")
+                    @pills.Pill("Miscellaneous", "#miscellaneous")
+                }
+            </div>            
             @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
             {
-                @pills.Pill("Grids", "#grids")
-                @pills.Pill("Typography", "#typography")
-                @pills.Pill("Lists", "#lists")
-                @pills.Pill("Tables", "#tables")
-                @pills.Pill("Forms", "#forms")
-                @pills.Pill("Buttons", "#buttons")
-                @pills.Pill("Images", "#images")
+                @pills.Pill("Back to top", "#top").MakeSmall()
             }
         </div>
     }
 }
-
-<script type="text/javascript">
-    var $window = $(window);
-    var $body = $(document.body);
-
-    $body.scrollspy({ target: '#sidebar' });
-
-    $window.on('load', function () {
-        $body.scrollspy('refresh');
-
-        var $sidebar = $('#sidebar');
-
-        $sidebar.affix({
-            offset: {
-                top: $sidebar.offset().top - 20
-            }
-        });
-
-        $sidebar.width($sidebar.parent().width());
-    });
-</script>
 

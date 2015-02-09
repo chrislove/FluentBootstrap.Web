@@ -1,0 +1,33 @@
+﻿@using FluentBootstrap
+
+<p>Create dropdowns using <code>.Dropdown()</code>. Use <code>.DropdownLink</code> to create link items, <code>.DropdownHeader()</code> to create headers, and <code>.DropdownDivider()</code> to create dividers. Additionally, if you're using FluentBootstrap.Mvc or FluentBootstrap.Mvc.T4MVC you can use <code>.DropdownLink()</code> to specify dropdown links with an action and controller or with a <code>ActionResult</code>. You can also disable a dropdown link with <code>.SetDisabled()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using(var dropdown = Html.Bootstrap(this).Dropdown("My Dropdown").Begin())
+            {
+                @dropdown.DropdownLink("Action", "/Action")
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownLink("Another Action", "/AnotherAction").SetState(TextState.Primary)
+                @dropdown.DropdownLink("Disabled Link", "/Disabled").SetDisabled()
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("Google", "http://www.google.com")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using(var dropdown = Html.Bootstrap(this).Dropdown(""My Dropdown"").Begin())
+            {
+                @dropdown.DropdownLink(""Action"", ""/Action"")
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownLink(""Another Action"", ""/AnotherAction"").SetState(TextState.Primary)
+                @dropdown.DropdownLink(""Disabled Link"", ""/Disabled"").SetDisabled()
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""Google"", ""http://www.google.com"")
+            }")
+    }
+}

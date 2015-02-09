@@ -20,7 +20,7 @@
         @RenderSection("head", required: false)
     </head>
     <body onload="prettyPrint()">        
-        @using (var navbar = Html.Bootstrap(this).Navbar().SetPosition(NavbarPosition.StaticTop).SetFluid(false).AddStyle("margin-bottom", "0px").Begin())
+        @using (var navbar = Html.Bootstrap(this).Navbar().SetPosition(NavbarPosition.StaticTop).SetFluid(false).AddStyle("margin-bottom", "0px").SetId("top").Begin())
         {
             using (navbar.NavbarHeader().Begin())
             {
@@ -35,10 +35,8 @@
             }
             @navbar.NavbarLink("Getting Started", "/GettingStarted").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/GettingStarted"))
             @navbar.NavbarLink("CSS", "/CSS").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/CSS"))
-            //@navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
-            //@navbar.NavbarLink("JavaScript", "/JavaScript").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/JavaScript"))
-            //@navbar.NavbarLink("MVC", "/MVC").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/MVC"))
-            //@navbar.NavbarLink("Extras", "/Extras").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Extras"))
+            @navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
+            @navbar.NavbarLink("Extras", "/Extras").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Extras"))
             @navbar.NavbarLink("Development", "/Development").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Development"))
             @navbar.NavbarLink("GitHub", "https://github.com/somedave/FluentBootstrap")
         }
@@ -65,7 +63,30 @@
         {
             <p>FluentBootstrap is crafted by @Html.Bootstrap(this).Link("Dave Glick", "http://www.somedave.com"). Code on @Html.Bootstrap(this).Link("GitHub", "https://github.com/somedave/FluentBootstrap").</p>
         }
-        <p></p>
+        <p></p>       
+
+        <script>
+            var $window = $(window);
+            var $body = $(document.body);
+
+            $body.scrollspy({ target: '#sidebar-nav' });
+
+            $window.on('load', function () {
+                $body.scrollspy('refresh');
+
+                var $sidebar = $('#sidebar');
+                if ($sidebar.length !== 0) {
+                    $sidebar.affix({
+                        offset: {
+                            top: $sidebar.offset().top - 20
+                        }
+                    });
+
+                    $sidebar.width($sidebar.parent().width());
+                }
+            });
+        </script>
+
         <script>
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -78,5 +99,6 @@
             ga('send', 'pageview');
 
         </script>
-    </bodyonload="prettyPrint()">
+
+    </body>
 </html>

@@ -1,0 +1,35 @@
+﻿@using FluentBootstrap
+
+@{
+    Page.Title = "Extras";
+    Layout = "_Layout.cshtml";
+}
+
+@using (var outerRow = Html.Bootstrap(this).GridRow().Begin())
+{
+    using (outerRow.GridColumn(9).SetSm(12).Begin())
+    {
+        using(Html.Bootstrap(this).Lead().Begin())
+        {
+            <text>This section explains components and capabilities that don't exist in the base Bootstrap framework but are added in FluentBootstrap.</text>
+        }
+    
+        @Html.Bootstrap(this).PageHeader("Placeholders").SetId("placeholders")
+        @RenderPage("/Sections/Extras/Placeholders.cshtml")
+    }
+    using (outerRow.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
+    {
+        <div id="sidebar">
+            <div id="sidebar-nav">
+                @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+                {
+                    @pills.Pill("Placeholders", "#placeholders")
+                }
+            </div>
+            @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+            {
+                @pills.Pill("Back to top", "#top").MakeSmall()
+            }
+        </div>
+    }
+}

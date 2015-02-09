@@ -1,0 +1,175 @@
+﻿@using FluentBootstrap
+
+<p>You can make dropdowns based on <code>button</code> elements with <code>.ButtonDropdown()</code>. Any extensions you would apply to a button can also be applied to the button dropdown.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Default").Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Primary").SetState(ButtonState.Primary).Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Default"").Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Primary"").SetState(ButtonState.Primary).Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Split Button Dropdowns")
+
+<p>Use <code>.SetSplit()</code> to split the button and the dropdown.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Default").SetSplit().Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Primary").SetSplit().SetState(ButtonState.Primary).Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Default"").SetSplit().Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Primary"").SetSplit().SetState(ButtonState.Primary).Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Button Dropdown Sizes")
+
+<p>As with normal buttons, use <code>.SetSize()</code> to set the size of the dropdown button.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Large").SetSize(ButtonSize.Lg).Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Small").SetSplit().SetState(ButtonState.Primary).SetSize(ButtonSize.Sm).Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Extra Small").SetSplit().SetSize(ButtonSize.Xs).Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Large"").SetSize(ButtonSize.Lg).Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Small"").SetSplit().SetState(ButtonState.Primary).SetSize(ButtonSize.Sm).Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Extra Small"").SetSplit().SetSize(ButtonSize.Xs).Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Dropup Buttons")
+
+<p>You can make the menu appear above the button by using <code>.SetDropup()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var dropdown = Html.Bootstrap(this).ButtonDropdown("Dropup").SetDropup().Begin())
+            {
+                @dropdown.DropdownHeader("Header")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink("A")
+                @dropdown.DropdownLink("B", "http://www.google.com")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var dropdown = Html.Bootstrap(this).ButtonDropdown(""Dropup"").SetDropup().Begin())
+            {
+                @dropdown.DropdownHeader(""Header"")
+                @dropdown.DropdownDivider()
+                @dropdown.DropdownLink(""A"")
+                @dropdown.DropdownLink(""B"", ""http://www.google.com"")
+            }")
+    }
+}

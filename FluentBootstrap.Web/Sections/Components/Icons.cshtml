@@ -1,0 +1,55 @@
+﻿@using FluentBootstrap
+
+<p>FluentBootstrap has full support for all Glyphicons shipped with Bootstrap. They can be accessed through the <code>Icon</code> enum wherever appropriate. You can create a standalone icon with <code>.Icon()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Icon(Icon.Star)
+            @Html.Bootstrap(this).Icon(Icon.Asterisk).SetState(TextState.Danger)
+            @using(Html.Bootstrap(this).Heading2().Begin())
+            {
+                <text>@Html.Bootstrap(this).Icon(Icon.ArrowRight) This Is A Heading</text>
+            }
+            @Html.Bootstrap(this).Button(Html.Bootstrap(this).Icon(Icon.RemoveCircle).ToString() + " Delete Something")
+            <br /><br />
+            @using(Html.Bootstrap(this).Alert(AlertState.Warning).Begin())
+            {
+                <text>@Html.Bootstrap(this).Icon(Icon.ExclamationSign) Oh, no! Something went wrong...</text>
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Icon(Icon.Star)
+            @Html.Bootstrap(this).Icon(Icon.Asterisk).SetState(TextState.Danger)
+            @using(Html.Bootstrap(this).Heading2().Begin())
+            {
+                <text>@Html.Bootstrap(this).Icon(Icon.ArrowRight) This Is A Heading</text>
+            }
+            @Html.Bootstrap(this).Button(Html.Bootstrap(this).Icon(Icon.RemoveCircle).ToString() + "" Delete Something"")
+            <br /><br />
+            @using(Html.Bootstrap(this).Alert(AlertState.Warning).Begin())
+            {
+                <text>@Html.Bootstrap(this).Icon(Icon.ExclamationSign) Oh, no! Something went wrong...</text>
+            }")
+    }
+}
+
+<p>Some components such as buttons also support directly specifying an icon with <code>.SetIcon()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Button("Favorite").SetIcon(Icon.Star)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Button(""Favorite"").SetIcon(Icon.Star)")
+    }
+}

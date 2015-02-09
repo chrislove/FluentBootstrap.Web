@@ -1,0 +1,126 @@
+﻿@using FluentBootstrap
+
+@Html.Bootstrap(this).Heading2("Contextual Colors")
+
+<p>You can change the state of text for any component using <code>.SetState()</code> which takes a <code>TextState</code> enum.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Paragraph("Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.").SetState(TextState.Muted)
+            @Html.Bootstrap(this).Span("Nullam id dolor id nibh ultricies vehicula ut id elit.").SetState(TextState.Primary)
+            @Html.Bootstrap(this).Div("Duis mollis, est non commodo luctus, nisi erat porttitor ligula.").SetState(TextState.Success)
+            @Html.Bootstrap(this).Paragraph("Maecenas sed diam eget risus varius blandit sit amet non magna.").SetState(TextState.Info)
+            @Html.Bootstrap(this).Span("Etiam porta sem malesuada magna mollis euismod.").SetState(TextState.Warning)
+            @Html.Bootstrap(this).Div("Donec ullamcorper nulla non metus auctor fringilla.").SetState(TextState.Danger)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Paragraph(""Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh."").SetState(TextState.Muted)
+            @Html.Bootstrap(this).Span(""Nullam id dolor id nibh ultricies vehicula ut id elit."").SetState(TextState.Primary)
+            @Html.Bootstrap(this).Div(""Duis mollis, est non commodo luctus, nisi erat porttitor ligula."").SetState(TextState.Success)
+            @Html.Bootstrap(this).Paragraph(""Maecenas sed diam eget risus varius blandit sit amet non magna."").SetState(TextState.Info)
+            @Html.Bootstrap(this).Span(""Etiam porta sem malesuada magna mollis euismod."").SetState(TextState.Warning)
+            @Html.Bootstrap(this).Div(""Donec ullamcorper nulla non metus auctor fringilla."").SetState(TextState.Danger)")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Contextual Backgrounds")
+
+<p>Similar to contextual colors, you can also change the background of any component with <code>.SetBackgroundState()</code> which takes a <code>BackgroundState</code> enum.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Span("Nullam id dolor id nibh ultricies vehicula ut id elit.").SetBackgroundState(BackgroundState.Primary)
+            @Html.Bootstrap(this).Div("Duis mollis, est non commodo luctus, nisi erat porttitor ligula.").SetBackgroundState(BackgroundState.Success)
+            @Html.Bootstrap(this).Paragraph("Maecenas sed diam eget risus varius blandit sit amet non magna.").SetBackgroundState(BackgroundState.Info)
+            @Html.Bootstrap(this).Span("Etiam porta sem malesuada magna mollis euismod.").SetBackgroundState(BackgroundState.Warning)
+            @Html.Bootstrap(this).Div("Donec ullamcorper nulla non metus auctor fringilla.").SetBackgroundState(BackgroundState.Danger)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Paragraph(""Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh."").SetState(TextState.Muted)
+            @Html.Bootstrap(this).Span(""Nullam id dolor id nibh ultricies vehicula ut id elit."").SetState(TextState.Primary)
+            @Html.Bootstrap(this).Div(""Duis mollis, est non commodo luctus, nisi erat porttitor ligula."").SetState(TextState.Success)
+            @Html.Bootstrap(this).Paragraph(""Maecenas sed diam eget risus varius blandit sit amet non magna."").SetState(TextState.Info)
+            @Html.Bootstrap(this).Span(""Etiam porta sem malesuada magna mollis euismod."").SetState(TextState.Warning)
+            @Html.Bootstrap(this).Div(""Donec ullamcorper nulla non metus auctor fringilla."").SetState(TextState.Danger)")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Close Buttons")
+
+<p>Use <code>.Close()</code> to create a close button.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Close()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Close()")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Carets")
+
+<p>Use <code>.Caret()</code> to create a caret.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Caret()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Caret()")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Element Positioning")
+
+<p>Use <code>.SetPullLeft()</code> and <code>.SetPullRight()</code> to easily float any component to the left or right. You can also create floated containers with <code>.PullLeft()</code> and <code>.PullRight()</code>. Use <code>.SetCenterBlock()</code> to center any component and <code>.CenterBlock()</code> to create a centered container. Use <code>.Clearfix()</code> to easily clear floats.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Paragraph("Floated right.").SetBackgroundState(BackgroundState.Primary).SetPullRight()
+            @using(Html.Bootstrap(this).PullLeft().Begin())
+            {
+                @Html.Bootstrap(this).Paragraph("Floated left.").SetBackgroundState(BackgroundState.Success)
+            }
+            @Html.Bootstrap(this).Clearfix()
+            @Html.Bootstrap(this).Span("Center block.").SetBackgroundState(BackgroundState.Info).SetCenterBlock()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Paragraph(""Floated right."").SetBackgroundState(BackgroundState.Primary).SetPullRight()
+            @using(Html.Bootstrap(this).PullLeft().Begin())
+            {
+                @Html.Bootstrap(this).Paragraph(""Floated left."").SetBackgroundState(BackgroundState.Success)
+            }
+            @Html.Bootstrap(this).Clearfix()
+            @Html.Bootstrap(this).Span(""Center block."").SetBackgroundState(BackgroundState.Info).SetCenterBlock()")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Element Visibility")
+
+<p>Use <code>.SetVisibility()</code> to adjust the visibility of any component. This method takes a <code>Visibility</code> flags enum that includes normal visibility toggles like <code>Visibility.Show</code> and <code>Visibility.Hidden</code> (which show and hide content respectively) as well as responsive visibility flags such as <code>Visibility.VisibleXsBlock</code>, <code>Visibility.VisibleXsInline</code> and <code>Visibility.VisibleXsInlineBlock</code>. See <a href="http://getbootstrap.com/css/#responsive-utilities">this Bootstrap documentation</a> for more information on responsive element visibility.</p>

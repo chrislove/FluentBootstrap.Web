@@ -1,0 +1,77 @@
+﻿@using FluentBootstrap
+
+<p>Create a pagination with <code>.Pagination()</code> and add pages with <code>.PageNum()</code>. Use <code>.SetActive()</code> to indicate the active page and <code>.SetDisabled()</code> to indicate a disabled page.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var pagination = Html.Bootstrap(this).Pagination().Begin())
+            {
+                @pagination.PageNum("1", "http://google.com")
+                @pagination.PageNum("2").SetActive()
+                @pagination.PageNum("3").SetDisabled()
+                @pagination.PageNum("4")
+            }
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var pagination = Html.Bootstrap(this).Pagination().Begin())
+            {
+                @pagination.PageNum(""1"", ""http://google.com"")
+                @pagination.PageNum(""2"").SetActive()
+                @pagination.PageNum(""3"").SetDisabled()
+                @pagination.PageNum(""4"")
+            }")
+    }
+}
+
+<p>You can also fluently add pages, previous, and next items with <code>.AddPage()</code>, <code>.AddPrevious()</code>, and <code>.AddNext()</code>. You can use method arguments to indicate if a page should be active or disabled and to specify the link.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @Html.Bootstrap(this).Pagination().AddPrevious().AddPage("http://google.com").AddPage(active: true).AddPage(disabled: true).AddPage().AddNext()
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@Html.Bootstrap(this).Pagination().AddPrevious().AddPage(""http://google.com"").AddPage(active: true).AddPage(disabled: true).AddPage().AddNext()")
+    }
+}
+
+@Html.Bootstrap(this).Heading2("Sizes")
+
+<p>Adjust the size of a pagination with <code>.SetSize()</code>.</p>
+
+@using (var panel = Html.Bootstrap(this).Panel().Begin())
+{
+    using (panel.PanelBody().Begin())
+    {
+        <text>
+            @using (var pagination = Html.Bootstrap(this).Pagination().SetSize(PaginationSize.Lg).Begin())
+            {
+                @pagination.PageNum("1", "http://google.com")
+                @pagination.PageNum("2").SetActive()
+                @pagination.PageNum("3").SetDisabled()
+                @pagination.PageNum("4")
+            }
+            @Html.Bootstrap(this).Pagination().AddPrevious().AddPage("http://google.com").AddPage(active: true).AddPage(disabled: true).AddPage().AddNext().SetSize(PaginationSize.Sm)
+        </text>
+    }
+    using (panel.PanelTable().Begin())
+    {
+        @Html.Code(@"@using (var pagination = Html.Bootstrap(this).Pagination().SetSize(PaginationSize.Lg).Begin())
+            {
+                @pagination.PageNum(""1"", ""http://google.com"")
+                @pagination.PageNum(""2"").SetActive()
+                @pagination.PageNum(""3"").SetDisabled()
+                @pagination.PageNum(""4"")
+            }
+            @Html.Bootstrap(this).Pagination().AddPrevious().AddPage(""http://google.com"").AddPage(active: true).AddPage(disabled: true).AddPage().AddNext().SetSize(PaginationSize.Sm)")
+    }
+}

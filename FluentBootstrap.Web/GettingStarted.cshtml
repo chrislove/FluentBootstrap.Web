@@ -137,6 +137,12 @@
                     <text>My content.</text>
                 }
             }")
+    
+        @Html.Bootstrap(this).Heading2("CSS Classes")
+    
+        <p>In fact, if you need to write HTML markup but still want the benefit of statically-typed Bootstrap CSS class names, you can use the static <code>Css</code> class. It contains <code>const</code> strings for every CSS class defined in the Bootstrap stylesheet. This allows you to swap out class name magic strings for string constants.</p>
+    
+        @Html.Code(@"<p class=""@Css.TextInfo"">This is some informational text.</p>")
 
         @**********************************@
 
@@ -147,37 +153,22 @@
     using (outerRow.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
     {
         <div id="sidebar">
+            <div id="sidebar-nav">
+                @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
+                {
+                    @pills.Pill("Get Bootstrap", "#get-bootstrap")
+                    @pills.Pill("Get FluentBootstrap", "#get-fluentbootstrap")
+                    @pills.Pill("Usage", "#usage")
+                    @pills.Pill("Output", "#output")
+                    @pills.Pill("Children", "#children")
+                    @pills.Pill("Mixing Code And Markup", "#mixing")
+                    @pills.Pill("Examples", "#examples")
+                }
+            </div>              
             @using (var pills = Html.Bootstrap(this).Pills().SetStacked().Begin())
             {
-                @pills.Pill("Get Bootstrap", "#get-bootstrap")
-                @pills.Pill("Get FluentBootstrap", "#get-fluentbootstrap")
-                @pills.Pill("Usage", "#usage")
-                @pills.Pill("Output", "#output")
-                @pills.Pill("Children", "#children")
-                @pills.Pill("Mixing Code And Markup", "#mixing")
-                @pills.Pill("Examples", "#examples")
+                @pills.Pill("Back to top", "#top").MakeSmall()
             }
         </div>
     }
 }
-
-<script type="text/javascript">
-    var $window = $(window);
-    var $body = $(document.body);
-
-    $body.scrollspy({ target: '#sidebar' });
-
-    $window.on('load', function () {
-        $body.scrollspy('refresh');
-
-        var $sidebar = $('#sidebar');
-
-        $sidebar.affix({
-            offset: {
-                top: $sidebar.offset().top - 20
-            }
-        });
-
-        $sidebar.width($sidebar.parent().width());
-    });
-</script>
