@@ -38,7 +38,7 @@
             @navbar.NavbarLink("Components", "/Components").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Components"))
             @navbar.NavbarLink("Extras", "/Extras").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Extras"))
             @navbar.NavbarLink("Development", "/Development").SetActive(Context.Request.Url.PathAndQuery.StartsWith("/Development"))
-            @navbar.NavbarLink("GitHub", "https://github.com/somedave/FluentBootstrap")
+            @navbar.NavbarLink("GitHub", "https://github.com/daveaglick/FluentBootstrap")
         }
         @using (Html.Bootstrap(this).Jumbotron().Begin())
         {
@@ -56,12 +56,12 @@
         {
             @RenderBody()
             @Html.Bootstrap(this).PageHeader("Help!")
-            <p>The best way to get help is to post a question on @Html.Bootstrap(this).Link("StackOverflow", "http://www.stackoverflow.com") with the <strong>FluentBootstrap</strong> tag. If you find a bug, @Html.Bootstrap(this).Link("open an issue on GitHub", "https://github.com/somedave/FluentBootstrap/issues"). You can also tweet or follow @Html.Bootstrap(this).Link("@somedaveg", "https://twitter.com/somedaveg") with questions or for announcements.</p>
+            <p>The best way to get help is to post a question on @Html.Bootstrap(this).Link("StackOverflow", "http://www.stackoverflow.com") with the <strong>FluentBootstrap</strong> tag. If you find a bug, @Html.Bootstrap(this).Link("open an issue on GitHub", "https://github.com/daveaglick/FluentBootstrap/issues"). You can also tweet or follow @Html.Bootstrap(this).Link("@daveaglick", "https://twitter.com/daveaglick") with questions or for announcements.</p>
         }
         <hr />
         @using(Html.Bootstrap(this).Container().Begin())
         {
-            <p>FluentBootstrap is crafted by @Html.Bootstrap(this).Link("Dave Glick", "http://www.somedave.com"). Code on @Html.Bootstrap(this).Link("GitHub", "https://github.com/somedave/FluentBootstrap").</p>
+            <p>FluentBootstrap is crafted by @Html.Bootstrap(this).Link("Dave Glick", "http://www.daveaglick.com"). Code on @Html.Bootstrap(this).Link("GitHub", "https://github.com/daveaglick/FluentBootstrap").</p>
         }
         <p></p>       
 

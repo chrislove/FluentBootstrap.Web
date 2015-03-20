@@ -77,7 +77,7 @@
 
         @Html.Bootstrap(this).Heading2("IDisposable And Begin/End")
 
-        <p>FluentBootstrap components can also be used as <code>IDisposable</code> objects (primarily for use in <code>using</code> statements for automatic tag closing). To do this, you need to call <code>.Begin()</code> on the component (for a discussion about why you have to make an extra call to get the IDisposable, <a href="http://www.somedave.com/posts/method-chaining-fluent-interfaces-and-the-finishing-problem">see here</a>). As soon as you call <code>.Begin()</code>, the component is immediately rendered to the output stream and a special wrapper is returned that provides extensions specific to the component being rendered.</p>
+        <p>FluentBootstrap components can also be used as <code>IDisposable</code> objects (primarily for use in <code>using</code> statements for automatic tag closing). To do this, you need to call <code>.Begin()</code> on the component (for a discussion about why you have to make an extra call to get the IDisposable, <a href="http://www.daveaglick.com/posts/method-chaining-fluent-interfaces-and-the-finishing-problem">see here</a>). As soon as you call <code>.Begin()</code>, the component is immediately rendered to the output stream and a special wrapper is returned that provides extensions specific to the component being rendered.</p>
         @Html.Code(@"using (var list = Html.Bootstrap().List(ListType.Ordered).Begin())
             {
                 @list.ListItem(""One"")
@@ -148,7 +148,7 @@
 
         @Html.Bootstrap(this).PageHeader("Examples").SetId("examples")
 
-        <p>There is a lot more to FluentBootstrap than what's described here. You can take a look at the other sections of this site (such as @Html.Bootstrap(this).Link("CSS", "/CSS")) for many examples. You can also view additional examples by looking at the <a href="https://github.com/somedave/FluentBootstrap/tree/master/FluentBootstrap.Tests.Web/Views/Tests">tests in the FluentBootstrap repository</a>.</p>
+        <p>There is a lot more to FluentBootstrap than what's described here. You can take a look at the other sections of this site (such as @Html.Bootstrap(this).Link("CSS", "/CSS")) for many examples. You can also view additional examples by looking at the <a href="https://github.com/daveaglick/FluentBootstrap/tree/master/FluentBootstrap.Tests.Web/Views/Tests">tests in the FluentBootstrap repository</a>.</p>
     }
     using (outerRow.GridColumn(3).SetVisibility(Visibility.HiddenSm | Visibility.HiddenXs).Begin())
     {

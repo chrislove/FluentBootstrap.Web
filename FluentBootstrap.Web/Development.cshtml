@@ -10,6 +10,17 @@
 @Html.Bootstrap(this).PageHeader("Release Notes").SetId("release-notes")
 
 
+
+<p>
+    <strong>3.3.2.1</strong>
+    @using (var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
+    {
+        @list.ListItem("Updated to Bootstrap 3.3.2.")
+        @list.ListItem("Updates to media objects to support Bootstrap 3.3.2 including new <code>.SetMiddle()</code> and <code>.SetBottom()</code> extensions.")
+        @list.ListItem("Updated feedback support to include specifying feedback icons on form groups.")
+        @list.ListItem("Added ability to insert trailing children with <code>.AddChildAtEnd()</code>.")
+    }
+</p>
 <p>
     <strong>3.3.1.5</strong>
     @using (var list = Html.Bootstrap(this).List(ListType.Unordered).Begin())
